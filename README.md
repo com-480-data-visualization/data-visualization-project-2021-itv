@@ -19,27 +19,53 @@ Please, fill the following sections about your project.
 
 __Amadeous switched the position of dataset and problematic to introduce the game before talking about the dataset. Is it ok?__
 
-### Problematic
-
-> Frame the general topic of your visualization and the main axis that you want to develop.
-> - What am I trying to show with my visualization?
-> - Think of an overview for the project, your motivation, and the target audience.
-
-Our project aims at providing visualisations of data from a multiplayer game, called "osu!" ([website](https://osu.ppy.sh/home)).
-
-In osu!, players have to touch the more accurately possible, circles that appear and disappear in rythm with a music. Players can create "beatmaps" that are designated by a music and a particular combination of circles. These maps can be enriched by "mods" that allow users to play different version of the same map, in various conditions (without displaying the circles on the map: "hidden" mod). The score of players are evaluated per beatmap and mod according their reactivity, precision at aiming the circles and combo bonuses (as long as a player perform correctly, they are awarded with bonuses) amongst other parameters.
-
-The team working around the game would like to change the difficulty rating of the beatmap/mod combination. Visualizations would help to identify and define new criteria for this evaluation.
 
 ### Dataset
 
-> Find a dataset (or multiple) that you will explore. Assess the quality of the data it contains and how much preprocessing / data-cleaning it will require before tackling visualization. We recommend using a standard dataset as this course is not about scraping nor data processing.
->
-> Hint: some good pointers for finding quality publicly available datasets ([Google dataset search](https://datasetsearch.research.google.com/), [Kaggle](https://www.kaggle.com/datasets), [OpenSwissData](https://opendata.swiss/en/), [SNAP](https://snap.stanford.edu/data/) and [FiveThirtyEight](https://data.fivethirtyeight.com/)), you could use also the DataSets proposed by the ENAC (see the Announcements section on Zulip).
+The datasets we want to work with are samples the database of "osu!", a popular online free-to-win rhythm game. ([website](https://osu.ppy.sh/home))
 
-The dataset we would be working on is splitted on two extracts: the top 10'000 players and an random sample of 10'000 players. Please note that this sampling is not actually completely random but is made according a special distribution to avoid having too much inactive players. Each extract is composed of several SQL tables representing the players, the beatmaps, the scores of players on these beatmaps with a mod and so on.
+While "osu!" provides multiple game-modes which are basically totally different games, we will only focus on the most played game-mode "osu!standard" (often refered as "osu!" itself).
 
-Data from the game can be found [here](https://data.ppy.sh/). Since these files are large and SQL exports, they are not directly exploitable from our Javascript code. In order to avoid every web client to download a large file to display visualization, a set of file has been imported and made available by Clément on a personal server. Our script will perform SQL queries on his server to get data for the visualization.
+In "osu!standard", you play beatmaps in which there are hit-circles appearing that should be aimed and clicked in rhythm with the music. There's a [wiki](https://osu.ppy.sh/wiki/en/Main_Page) of the game, and I recommend you to read the [osu!standard game-mode wiki page](https://osu.ppy.sh/wiki/en/Game_mode/osu%21) for more details of how the game works. Watching some osu! gameplay videos might also be a good idea.
+
+The main developper provides samples at this address : [https://data.ppy.sh/](https://data.ppy.sh/).
+
+Since the samples are very large SQL exports, in order to avoid having every web client to download a large file to display visualization, a set of file has been imported and made available by Clément on a personal server. We will use a simple backend on his server to query the data.
+
+The following database samples are made available :
+    - The osu_top dump contains the data of the 10k "best" active players (according to the current ranking criteria).
+    - The osu_random dump contains the data of 10k uniformly sampled active players.
+    - The osu_mlpp dump contains the data of random active players sampled from a special probability distribution where better player means higher probability.
+
+Each sample is composed of several SQL tables, the most important ones being :
+    - `osu_beatmaps` representing the beatmaps and `osu_beatmapsets` representing a set of beatmaps made on the same music.
+    - `osu_user_stats` representing the sampled players and some statistics (like playtime) and their rank.
+    - `osu_scores_high` representing the best score achieved by a players on each beatmap he played.
+
+The data can mostly be used as is, but some simple preprocessing can allow more meaningfull visualizations and avoid re-calculations, as later explained.
+
+
+### Problematic
+
+In osu!, beatmaps are created by the community and verified by staff members. There are already more than 100k validated beatmaps. Due to the large and ever increasing amount of beatmaps, evaluating their difficulty can not be done subjectively and has to be automated.
+
+For that purpose, as of 2021 and since 2014, the difficulty of beatmaps is evaluated using a traditionnal algorithm (called ppv2) based on the spacial and time distance of consecutive hit-circles and some form of accumulation of the difficulty across a whole beatmap.  
+Based on that, scores are also given a difficulty value which is given in a unit called "pp" standing for "performance points".  
+Each player is assigned a global pp value as a weighted sum (exponentially decreasing weight) of his scores ordered in descending pp values.  
+More details can be found [in the wiki](https://osu.ppy.sh/wiki/en/Performance_points).
+
+Even though the ppv2 algorithm is regularly improved, this algorithm is still highly unbalanced as there is a lot of aspects of the real difficulty of beatmap for which no one has yet found a good way of estimating them yet. This leads to inaccuracy in the ranking of players and tentative of abuse of that inaccuracy from players and beatmap creators.
+
+To resolve that problem, there is various people working on improving the ppv2 system or creating new systems (and Clément is one of them).
+
+The main objective of that project is to make data visualizations that provide insights regarding the difficulty of a score on a beatmap to help indentifying and evaluating difficulty criterias.  
+In particular, we might want to display :
+- Proportions of players with `x` pp that can do some score `s` (or better) on some beatmap `b`
+- Relation between this proportions and the score pp value given by ppv2.
+- Comparison of those proportions for different scores or different beatmaps.
+- Relations observed between those statistics and various beatmap parameters. (length, bpm, etc...)
+- Tendencies oberved for specific beatmap creators.
+
 
 ### Exploratory Data Analysis
 
