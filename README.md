@@ -17,9 +17,6 @@ Please, fill the following sections about your project.
 
 *(max. 2000 characters per section)*
 
-__Amadeous switched the position of dataset and problematic to introduce the game before talking about the dataset. Is it ok?__
-
-
 ### Dataset
 
 The datasets we want to work with are samples the database of "osu!", a popular online free-to-win rhythm game. ([website](https://osu.ppy.sh/home))
