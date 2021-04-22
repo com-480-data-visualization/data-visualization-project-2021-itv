@@ -76,12 +76,25 @@ __TO BE COMPLETED__
 
 ### Related work
 
-> - What others have already done with the data?
-> - Why is your approach original?
-> - What source of inspiration do you take? Visualizations that you found on other websites or magazines (might be unrelated to your data).
-> - In case you are using a dataset that you have already explored in another context (ML or ADA course, semester project...), you are required to share the report of that work to outline the differences with the submission for this class.
+This project would be an important part of a bigger project initiated by Clément called MLpp which aims at creating a statistical and Machine-Learning based system for evaluating beatmap difficulties in order to either replace ppv2 or help improving it.
+You can learn more about MLpp in this incomplete [summary](https://github.com/osu-mlpp/wiki/blob/master/Summary.md) or in this incomplete but more detailed [document](https://docs.google.com/document/d/1tXCWdRicvnTaLz2JjkTN72MhKJFGemEa-gxHFV_zGTk) (both written by Clément).
 
-Since the futur visualisations will be used in a project lead by the team around the osu! game with whom Clément is in contact and since no other visualization have been braught to their attention, we can assume that there is not previous related work and assume that our approach is original. _Small part on the sources?_
+
+There exists multiple approaches in evaluating how over- or under-estimated the difficulty evaluation of ppv2 on maps or scores is :
+- [osu-pps.com](https://osu-pps.com/) provides a list of the most "overweightness" beatmaps based on statistics.
+- [osu.gg](https://www.osu.gg/) similarly estimates the "overweightness" of top scores of a player.
+
+In both examples above, the source code is available but almost no explanations and no data visualization are given. Also, the results are judged insufficient by the community.
+
+[ppv1](https://osu.ppy.sh/wiki/en/Performance_points/ppv1) (the ancestor of ppv2) was a statistical difficulty evaluation system, but the approach was highly different and the results were considered bad which led to the adoption of ppv2 in 2014.
+
+There exists some kinds of data visualization related to other aspects of osu! :
+- [osutrack](https://ameobea.me/osutrack/) can save the state of some player's osu! profile at different points in time and displays the evolution of the player's top 100 pp scores and other player statistics over time. ([example profile](https://ameobea.me/osutrack/user/ThePooN/))
+- [osudaily](https://osudaily.net/) provides similar user evolution tracking features as osutrack, but it also provides some [various statistics about osu!](https://osudaily.net/various.php).
+
+Both websites above do not propose any visualization related to the difficulty of a beatmap or score.
+
+Additionnally, since Clément is in contact with both the osu! dev team and other people working on improving the difficulty evaluation of osu!, and that no other visualization have been brought to his attention, we can safely assume that there is probably no existing visualization on the subject of difficulty evaluation available and that our approach is original.
 
 ## Milestone 2 (7th May, 5pm)
 
