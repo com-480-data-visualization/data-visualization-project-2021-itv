@@ -33,14 +33,14 @@ The main developper provides samples at this address : [https://data.ppy.sh/](ht
 Since the samples are very large SQL exports, in order to avoid having every web client to download a large file to display visualization, a set of file has been imported and made available by Clément on a personal server. We will use a simple backend on his server to query the data.
 
 The following database samples are made available :
-    - The osu_top dump contains the data of the 10k "best" active players (according to the current ranking criteria).
-    - The osu_random dump contains the data of 10k uniformly sampled active players.
-    - The osu_mlpp dump contains the data of random active players sampled from a special probability distribution where better player means higher probability.
+- The osu_top dump contains the data of the 10k "best" active players (according to the current ranking criteria).
+- The osu_random dump contains the data of 10k uniformly sampled active players.
+- The osu_mlpp dump contains the data of random active players sampled from a special probability distribution where better player means higher probability.
 
 Each sample is composed of several SQL tables, the most important ones being :
-    - `osu_beatmaps` representing the beatmaps and `osu_beatmapsets` representing a set of beatmaps made on the same music.
-    - `osu_user_stats` representing the sampled players and some statistics (like playtime) and their rank.
-    - `osu_scores_high` representing the best score achieved by a players on each beatmap he played.
+- `osu_beatmaps` representing the beatmaps and `osu_beatmapsets` representing a set of beatmaps made on the same music.
+- `osu_user_stats` representing the sampled players and some statistics (like playtime) and their rank.
+- `osu_scores_high` representing the best score achieved by a players on each beatmap he played.
 
 The data can mostly be used as is, but some simple preprocessing can allow more meaningfull visualizations and avoid re-calculations, as later explained.
 
