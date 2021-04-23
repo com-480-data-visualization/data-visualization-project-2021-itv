@@ -66,6 +66,16 @@ In particular, we might want to display :
 
 ### Exploratory Data Analysis
 
+You can see some of the exploratory data analysis in the notebook available in the Milestone1 folder.
+
+In in the `osu_top` dump, user has an average of 3571 high scores, while users in the `osu_random` dump have an average of 189.9 high scores.
+
+In `osu_user_stats`, we have the total pp value of the player (`rank_score`), but since some scores are old and the player improves his skills over time, we might want to estimate the pp value of players at the time of each of his scores, which is the first form of preprocessing that we want to do.
+
+Also, thanks to `osu_user_beatmap_playcount`, we know if a player ever tried to play a given beatmap even if the player has no score on the map, and we want to consider that a player has a score of 0 if he did ever try the beatmap but never finished the beatmap. This is the second form of preprocessing that we want to do.
+
+
+
 ### Related work
 
 This project would be an important part of a bigger project initiated by Clément called MLpp which aims at creating a statistical and Machine-Learning based system for evaluating beatmap difficulties in order to either replace ppv2 or help improving it.
