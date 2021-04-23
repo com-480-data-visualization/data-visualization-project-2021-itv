@@ -66,11 +66,6 @@ In particular, we might want to display :
 
 ### Exploratory Data Analysis
 
-> Pre-processing of the data set you chose
-> - Show some basic statistics and get insights about the data
-
-__TO BE COMPLETED__
-
 ### Related work
 
 This project would be an important part of a bigger project initiated by Clément called MLpp which aims at creating a statistical and Machine-Learning based system for evaluating beatmap difficulties in order to either replace ppv2 or help improving it.
@@ -107,4 +102,3 @@ Additionnally, since Clément is in contact with both the osu! dev team and othe
 
 - < 24h: 80% of the grade for the milestone
 - < 48h: 70% of the grade for the milestone
-
