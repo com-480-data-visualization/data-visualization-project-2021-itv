@@ -1,0 +1,23 @@
+.beatmaps {
+	padding: 56px 20px;
+	min-height: 100%;
+	width: 100%;
+}
+
+.search {
+	padding: 20px;
+	float: left;
+	width: 30%;
+}
+
+.viz {
+	padding: 20px;
+	float: left;
+	width: 70%;
+}
+
+.row:after {
+	content: "";
+  display: table;
+  clear: both;
+}

@@ -6,6 +6,7 @@ import Header from './header';
 // Code-splitting is automated for `routes` directory
 import Home from '../routes/home';
 import About from '../routes/about'
+import Beatmaps from '../routes/beatmaps'
 
 const App = () => (
 	<div id="app">
@@ -13,6 +14,7 @@ const App = () => (
 		<Router>
 			<Home path="/" />
 			<About path="/about" />
+			<Beatmaps path="/beatmaps" />
 		</Router>
 	</div>
 )
