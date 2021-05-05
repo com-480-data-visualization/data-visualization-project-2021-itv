@@ -1,10 +1,11 @@
 {
   "private": true,
-  "name": "frontend",
-  "version": "0.0.0",
+  "name": "osu! Visualisations",
+  "version": "0.0.1",
   "license": "MIT",
   "scripts": {
     "build": "preact build",
+    "postbuild": "rm -r ../docs && mv build ../docs",
     "serve": "sirv build --port 8080 --cors --single",
     "dev": "preact watch",
     "lint": "eslint src",
@@ -27,6 +28,7 @@
     "sirv-cli": "1.0.3"
   },
   "dependencies": {
+    "mysql": "^2.18.1",
     "preact": "^10.3.2",
     "preact-render-to-string": "^5.1.4",
     "preact-router": "^3.2.1"
