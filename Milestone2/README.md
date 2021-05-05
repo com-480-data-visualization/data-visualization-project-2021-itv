@@ -16,7 +16,7 @@ Comments:
 ![web-chart](../frontend/src/assets/images/web-chart.jpg)  
 
 __Scores visualisation__    
-![scores](../frontend/src/assets/images/scores.png)
+![scores](../frontend/src/assets/images/Scores.png)
 
 __Player skill improvement__   
 To build a new score evaluation system it is important to understand which skills the are more likely to be improved by the players. The skills which remain unchanged over time/number of games played should be considered as a bad metric for evaluation.  
