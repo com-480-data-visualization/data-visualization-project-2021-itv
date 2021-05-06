@@ -1,6 +1,4 @@
-# Project of Data Visualization (COM-480)
-
-## Milestone 1 (23rd April, 5pm)
+# Milestone 1 (23rd April, 5pm)
 
 **10% of the final grade**
 
@@ -9,7 +7,7 @@ Please, fill the following sections about your project.
 
 *(max. 2000 characters per section)*
 
-### Dataset
+## Dataset
 
 The datasets we want to work with are samples the database of "osu!", a popular online free-to-win rhythm game. ([website](https://osu.ppy.sh/home))
 
@@ -34,7 +32,7 @@ Each sample is composed of several SQL tables, the most important ones being :
 The data can mostly be used as is, but some simple preprocessing can allow more meaningfull visualizations and avoid re-calculations, as later explained.
 
 
-### Problematic
+## Problematic
 
 In osu!, beatmaps are created by the community and verified by staff members. There are already more than 100k validated beatmaps. Due to the large and ever increasing amount of beatmaps, evaluating their difficulty can not be done subjectively and has to be automated.
 
@@ -56,7 +54,7 @@ In particular, we might want to display :
 - Tendencies oberved for specific beatmap creators.
 
 
-### Exploratory Data Analysis
+## Exploratory Data Analysis
 
 You can see some of the exploratory data analysis in the notebook available in the Milestone1 folder.
 
@@ -68,7 +66,7 @@ Also, thanks to `osu_user_beatmap_playcount`, we know if a player ever tried to 
 
 
 
-### Related work
+## Related work
 
 This project would be an important part of a bigger project initiated by Clément called MLpp which aims at creating a statistical and Machine-Learning based system for evaluating beatmap difficulties in order to either replace ppv2 or help improving it.
 You can learn more about MLpp in this incomplete [summary](https://github.com/osu-mlpp/wiki/blob/master/Summary.md) or in this incomplete but more detailed [document](https://docs.google.com/document/d/1tXCWdRicvnTaLz2JjkTN72MhKJFGemEa-gxHFV_zGTk) (both written by Clément).
