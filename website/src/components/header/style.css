@@ -1,3 +1,4 @@
+
 .header {
 	position: fixed;
 	left: 0;
@@ -10,22 +11,33 @@
 	z-index: 50;
 }
 
-.header h1 {
-	float: left;
-	margin: 0;
+.header div {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: stretch;
+}
+
+.header div h1 {
+	display: inline-block;
+	margin: 0px;
 	padding: 0 15px;
+}
+
+.header div h1 a {
 	font-size: 24px;
 	line-height: 56px;
 	font-weight: 400;
 	color: #FFF;
 }
 
-.header nav {
-	float: right;
+.header div nav {
+	display: inline-block;
+	color: white;
 	font-size: 100%;
 }
 
-.header nav a {
+.header div nav a {
 	display: inline-block;
 	height: 56px;
 	line-height: 56px;
@@ -38,11 +50,11 @@
 	will-change: background-color;
 }
 
-.header nav a:hover,
-.header nav a:active {
+.header div nav a:hover,
+.header div nav a:active {
 	background: rgba(0,0,0,0.2);
 }
 
-.header nav a.active {
+.header div nav a.active {
 	background: rgba(0,0,0,0.4);
 }

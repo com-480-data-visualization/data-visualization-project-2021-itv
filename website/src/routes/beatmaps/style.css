@@ -5,14 +5,14 @@
 }
 
 .search {
-	padding: 20px;
-	float: left;
 	width: 30%;
+	margin-right: 70%;
+	margin-top: 20px;
+	height: 1.2em;
 }
 
 .viz {
 	padding: 20px;
-	float: left;
 	width: 70%;
 }
 

@@ -1,4 +1,4 @@
-# frontend
+# Website for osu! Vizualisations
 
 ## CLI Commands
 

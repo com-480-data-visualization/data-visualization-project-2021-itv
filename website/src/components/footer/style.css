@@ -1,0 +1,18 @@
+#footer {
+  color: #D0D0D0;
+  background-color: #2F2F2F;
+  padding-top: 1.2em;
+  padding-bottom: 1.2em;
+}
+
+#footer div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  -ms-flex-align: stretch;
+}
+
+.link {
+  color: #D0D0D0;
+  text-decoration: underline;
+}
