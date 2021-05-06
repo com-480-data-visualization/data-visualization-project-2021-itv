@@ -4,6 +4,7 @@ import { Router } from 'preact-router';
 //import style from '../style/index.css';
 import Header from './header';
 import Footer from './footer';
+import baseroute from '../baseroute';
 
 // Code-splitting is automated for `routes` directory
 import Home from '../routes/home';
@@ -15,9 +16,9 @@ const App = () => (
 		<Header />
 		<div id="app">
 			<Router>
-				<Home path="/" />
-				<Beatmaps path="/beatmaps" />
-				<About path="/about" />
+				<Home path={`${baseroute}/`} />
+				<Beatmaps path={`${baseroute}/beatmaps`} />
+				<About path={`${baseroute}/about`} />
 			</Router>
 		</div>
 		<Footer />

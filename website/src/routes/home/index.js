@@ -2,8 +2,8 @@ import { h, Component } from 'preact';
 import { Link } from 'preact-router/match';
 
 import style from './style.css';
+import baseroute from '../../baseroute';
 
-import lineChart from '../../assets/images/scores.png';
 import skillImprovement from '../../assets/images/skill-improvement.png';
 import webChart from '../../assets/images/web-chart.png';
 
@@ -14,7 +14,7 @@ class Home extends Component {
 				<h1>Data Visualization Project</h1>
 				<p>This project aims at visualizing osu! game data. 
 				These visualizations will help developers to adjust the osu! score evaluation system.</p>
-				<p>Some information about our project. For more, please visit <Link href="/about">the about page</Link>.</p>
+				<p>Some information about our project. For more, please visit <Link href={`${baseroute}/about`}>the about page</Link>.</p>
 				<ul>
 					<li><a href="#osu!?">osu!?</a></li>
 					<li><a href="#problematic">Problematic</a></li>
