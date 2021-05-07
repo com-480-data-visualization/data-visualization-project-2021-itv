@@ -49,8 +49,8 @@ class Home extends Component {
 				<img src={skillImprovement} alt="Second graphic. Wej." title="Second graphic. Wej." />
 				<p>
 					Next, the beatmaps are studied. 
-					To determine the overall tendencies, several beatmap features are visualized in the web chart below.
-					In this web chart the average feature levels are compared to the top-1000 most popular beatmaps' ones.
+					To determine the overall tendencies, several beatmap features are visualized in the star chart below.
+					In this star chart the average feature levels are compared to the top-1000 most popular beatmaps' ones.
 				</p>
 				<img src={webChart} alt="Last graphic" title="Last graphic" />
 				<p>
