@@ -53,7 +53,7 @@ class Home extends Component {
 				</p>
 				<img src={webChart} alt="Last graphic" title="Last graphic" />
 				<p>
-					In order to provide a more in-depth analysis, we need to have tools to analyse one beatmap separately. For that, take a look at the <a href="./beatmaps">Beatmaps page</a>. 
+					In order to provide a more in-depth analysis, we need to have tools to analyse one beatmap separately. For that, take a look at the <a href={`${baseroute}/beatmaps`}>Beatmaps page</a>. 
 				</p>
 				<h2><span id="data">Data</span></h2>
 				<p>And <em>Voilà</em>!</p>
