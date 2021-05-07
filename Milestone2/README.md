@@ -5,7 +5,7 @@
 ## Visualisations  
 
 ### Beatmap visualisation
-In order to be able to improve the beatmap difficulty evaluation system, the different beatmap features must be compared. The figure below displays the comparison between the 1000 most popular and all beatmaps.  
+In order to be able to improve the beatmap difficulty evaluation system, the different beatmap features must be compared. The star plot below displays the comparison between the 1000 most popular and all beatmaps.  
 
 Comments:
 * can visualise top-1000 among top players to find out how they get "free points"
@@ -14,6 +14,7 @@ Comments:
 ![web-chart](../website/src/assets/images/web-chart.png)  
 
 ### Scores visualisation  
+The figure below displays the probability that the player reaches a certain score on a given beatmap. This plot may also be very useful to evaluate the difficulty of the beatmap.
 ![scores](../website/src/assets/images/scores.png)
 
 ### Player skill improvement
@@ -28,6 +29,12 @@ Comments:
 ## Tools
 * D3.js  
 * Preactjs
+
+## Useful lectures  
+* Lecture 1.2 "Basic Web Development": basic html/css
+* Lectures 4.2, 5,.2 - D3: interaction with DOM, visualizations
+* Lecture 6.1 "Perception, Color": choose a color palette ???
+* Lecture 11.1 "Tabular Data": star plot
 
 ## Possible improvements  
 
