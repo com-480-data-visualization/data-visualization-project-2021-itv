@@ -10,7 +10,7 @@ In order to be able to improve the beatmap difficulty evaluation system, the dif
 ![web-chart](../website/src/assets/images/web-chart.png)  
 
 ### PP scores visualisation  
-The figure below displays the probability that the player reaches a certain score on a given beatmap. This plot may also be very useful to evaluate the difficulty of the beatmap. The user of our website will be able to select the beatmap (by ID) and get such a plot for this beatmap.  
+The figure below displays the probability that the player reaches a certain score on a given beatmap. This plot may also be very useful to evaluate the difficulty of the beatmap. The user of our website will be able to select the beatmap (by ID) and get such a plot for this beatmap as well as other relevant information.  
 ![scores](../website/src/assets/images/scores.png)
 
 ### Player skill improvement
@@ -19,11 +19,11 @@ To build a new score evaluation system it is important to understand which skill
 ![skills](../website/src/assets/images/skill-improvement.png)
 
 ## Tools
-* __D3.js:__  
+* __[D3.js](https://d3js.org/):__  
   * selectors  
   * `d3.starPlot()` for the star plot beatmaps features visualization
   * `d3.line()` for player skill improvement and score plots
-* __Preactjs:__  
+* __[Preactjs](https://preactjs.com/):__  
   * frontend
 
 ## Useful lectures  
