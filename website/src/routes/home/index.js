@@ -31,7 +31,7 @@ class Home extends Component {
 				</p>
 				<p>
 					For that purpose, as of 2021 and since 2014, the difficulty of beatmaps is evaluated using a traditionnal algorithm (called ppv2) 
-					based on the spacial and time distance of consecutive hit-circles and some form of accumulation of the difficulty across a whole beatmap.  
+					mostly based on the spacial and time distance of consecutive hit-circles and some form of accumulation of the difficulty across a whole beatmap. 
 					Based on that, scores are also given a difficulty value which is given in a unit called "pp" standing for "performance points". 
 					Each player is assigned a global pp value as a weighted sum (exponentially decreasing weight) of his scores ordered in descending pp values. 
 				</p>
@@ -39,12 +39,11 @@ class Home extends Component {
 					Even though the ppv2 algorithm is regularly improved, it is still highly unbalanced as there are a lot of aspects of the real difficulty of beatmap 
 					for which no one yet has found a good way of estimating them. 
 					This leads to inaccuracy in the ranking of players and tentative of abuse of that inaccuracy from players and beatmap creators.
+					The goal of this project is to help finding the issues in the osu! score evaluation system by making some visualizations. 
 				</p>
 				<p>
-					The goal of this project is to find the issues in the osu! score evaluation system by making some visualizations. 
-					The first idea is to figure out which skills the players are more likely to improve. 
-					The figure below displays three skill (count50, count100 and count300) metrics evaluation.  
-					Note that the skills which players tend to improve over time may be considered for the score evaluation.
+					The figure bellow shows the evolution in total amount of good (300), slightly late/early (100) and very late/early (50) hits with respect to the playcount of the player. 
+					This shows that players improve their timing accuracy as they play more.
 				</p>
 				<img src={skillImprovement} alt="Second graphic. Wej." title="Second graphic. Wej." />
 				<p>
@@ -54,7 +53,7 @@ class Home extends Component {
 				</p>
 				<img src={webChart} alt="Last graphic" title="Last graphic" />
 				<p>
-					To have a closer look at the beatmaps, take a look at the <a href="../beatmaps">Beatmaps page</a>. 
+					In order to provide a more in-depth analysis, we need to have tools to analyse one beatmap separately. For that, take a look at the <a href={`${baseroute}/beatmaps`}>Beatmaps page</a>. 
 				</p>
 				<h2><span id="data">Data</span></h2>
 				<p>And <em>Voilà</em>!</p>
