@@ -1,39 +1,41 @@
-# Milestone 2 (7th May, 5pm)
+# Data Visualization Project
+## Milestone 2
 
-**10% of the final grade**
+### Introduction  
+Every semester EPFL students are invited to provide a feed-back on the courses they follow. The evaluation period lasts 10 days. Students can rate every course they are enrolled in and leave the comments with critics, compliments or improvements they would make to the course. 
 
-## Visualisations  
+### Problematic  
+To extract valuable conclusions out of these feedbacks, it is important to have a participation rate above 60%. The goal of our project is to encourage students to take part in the course evaluations by gamifying the process and bringing some competition into it.  
 
-### Beatmap visualisation
-In order to be able to improve the beatmap difficulty evaluation system, the different beatmap features must be compared. The star plot below displays the comparison between the 1000 most popular and all beatmaps.  
 
-![web-chart](../website/src/assets/images/web-chart.png)  
+### Visualizations  
+__Home page__  
+The `Home` page of our website will contain some general information about our project as well as the leaderboard (see figure below) displaying the schools with the highest participation rates.   
+![](../website/src/assets/images/leaderboard.png)
 
-### PP scores visualisation  
-The figure below displays the probability that the player reaches a certain score on a given beatmap. This plot may also be very useful to evaluate the difficulty of the beatmap. The user of our website will be able to select the beatmap (by ID) and get such a plot for this beatmap as well as other relevant information.  
-![scores](../website/src/assets/images/scores.png)
+__Course page__  
+The `Course` page of our website will contain the results of the evaluations for a given course. The user will be able to research the course by it's ID.  
 
-### Player skill improvement
-To build a new score evaluation system it is important to understand which skills the are more likely to be improved by the players. The skills which remain unchanged over time/number of games played should be considered as a bad metric for evaluation.  
+The figure below displays the number of students who have submitted their evaluations day by day for a given course.
+![](../website/src/assets/images/day-by-day.png)  
 
-![skills](../website/src/assets/images/skill-improvement.png)
+The barplot below displays how many students are subscribed for a given course per school and how many of them have evaluated it.
+![](../website/src/assets/images/per-school.png)  
+For most part of the courses, the distribution of subscribed students of different schools is not even. In other words, 80% of students are very likely to come from the school which issued this course and the remaining 20% of students come from the different faculties (these numbers are arbitrary). In this case, the information about the minority schools will not be clearly visible in the above barplot. To fix this issue, the complementary barplot will be displayed (see figure below).  
+![](../website/src/assets/images/percentage-per-school.png)
 
-## Tools
-* __[D3.js](https://d3js.org/):__  
-  * selectors  
-  * `d3.starPlot()` for the star plot beatmaps features visualization
-  * `d3.line()` for player skill improvement and score plots
-* __[Preactjs](https://preactjs.com/):__  
-  * frontend
+Please have a look at our website since it better reflect the various vizualisations and how they will be displayed.
 
-## Useful lectures  
-* Lecture 1.2 "Basic Web Development": basic html/css
-* Lectures 4.2, 5,.2 - D3: interaction with DOM, visualizations
-* Lecture 6.1 "Perception, Color": choose a color palette
-* Lecture 11.1 "Tabular Data": star plot
+### Tools
 
-## Possible improvements  
+* Javascript
+* D3
+* Preact
 
-Interactive plots:
-* the user can move the vertices of the web chart and see the values   
-* the user can move the vertical bar in the scores plot to see the probability  
+### Useful Lectures  
+
+* Lecture 4 with D3
+* Lecture 6 with perception color
+
+### Possible Improvements  
+* For the next evaluation period, collect the data on the fly, so that schools can have a "race"  (Bar Chart Race](https://observablehq.com/@d3/bar-chart-race))
