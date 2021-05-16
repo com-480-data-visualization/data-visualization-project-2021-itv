@@ -1,7 +1,7 @@
 {
-  "name": "osu! Vizualisations",
-  "short_name": "osu! Vizu",
-  "start_url": "/data-visualization-project-2021-osu/",
+  "name": "Check My Eval Rate",
+  "short_name": "CMER",
+  "start_url": "/data-visualization-project-2021-cmer/",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#fff",

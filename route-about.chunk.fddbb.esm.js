@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[2],{VDfu:function(){},ZbNB:function(n,o,t){"use strict";t.r(o);var e=t("hosL"),c=t("VDfu"),u=t.n(c);o.default=()=>Object(e.h)("section",{class:u.a.about},Object(e.h)("h1",null,"About"),Object(e.h)("p",null,"More information on this project here."))}}]);
+//# sourceMappingURL=route-about.chunk.fddbb.esm.js.map

@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[2],{VDfu:function(n){n.exports={about:"about__3Ycn6"}},ZbNB:function(n,o,t){"use strict";t.r(o);var u=t("hosL"),e=t("VDfu"),c=t.n(e);o.default=function(){return Object(u.h)("section",{class:c.a.about},Object(u.h)("h1",null,"About"),Object(u.h)("p",null,"More information on this project here."))}}}]);
-//# sourceMappingURL=route-about.chunk.23385.js.map
