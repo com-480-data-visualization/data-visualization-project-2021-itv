@@ -9,11 +9,22 @@ To extract valuable conclusions out of these feedbacks, it is important to have 
 
 
 ### Visualizations  
-__Home page__  
+#### Home page  
 The `Home` page of our website will contain some general information about our project as well as the leaderboard (see figure below) displaying the schools with the highest participation rates.   
 ![](../website/src/assets/images/leaderboard.png)
 
-__Course page__  
+Below this global ranking, you will find a radial tree representing, from the center to the edge of the tree: the various schools, for each school their program and for each program the courses that are linked to them. We would like every element to be a link to a related page on the website displaying some analysis about the indicative feedbacks.
+
+#### School page
+
+On the School page, you will be able to select a school and for each school see the overall participation rate of the students enrolled in this section. It allows a quick comparison of the various programs motivation. Some other visual elements could be rendered such as:
+
+* a ranking of the more evaluated courses
+* a ranking of the ones with the highest number of student registered
+* a ranking of the one with the higher rate of students outside the school offering the course (for instance: SV students for a ML course, in IC),…
+
+#### Course page  
+
 The `Course` page of our website will contain the results of the evaluations for a given course. The user will be able to research the course by it's ID.  
 
 The figure below displays the number of students who have submitted their evaluations day by day for a given course.
@@ -38,4 +49,8 @@ Please have a look at our website since it better reflect the various vizualisat
 * Lecture 6 with perception color
 
 ### Possible Improvements  
-* For the next evaluation period, collect the data on the fly, so that schools can have a "race"  (Bar Chart Race](https://observablehq.com/@d3/bar-chart-race))
+* For the next evaluation period, collect the data on the fly, so that schools can have a "race"  (eventually using [Bar Chart Race](https://observablehq.com/@d3/bar-chart-race))
+
+### Remark
+
+For now, the website we have ([here](https://com-480-data-visualization.github.io/data-visualization-project-2021-cmer/)) is build by Github Actions. For some unknown reason, the footer on the Github Pages hosted website is present twice on each page. It is not the case on our local build, we are investigating this issue.

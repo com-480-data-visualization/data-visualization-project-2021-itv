@@ -9,7 +9,7 @@ const Footer = () => (
         <p>This website was made for the Data Visualisation course at <Link href="https://www.epfl.ch" class={style.link}>EPFL</Link>.</p>
       </div>
       <div>
-        <p><Link href="https://github.com/com-480-data-visualization/data-visualization-project-2021-osu" title="Github repo" class={style.link}>Check the code!</Link></p>
+        <p><Link href="https://github.com/com-480-data-visualization/data-visualization-project-2021-cmer" title="Github repo" class={style.link}>Check the code!</Link></p>
       </div>
     </div>
   </footer>

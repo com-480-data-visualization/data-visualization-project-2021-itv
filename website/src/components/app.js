@@ -8,9 +8,9 @@ import baseroute from '../baseroute';
 
 // Code-splitting is automated for `routes` directory
 import Home from '../routes/home';
-import About from '../routes/about';
 import Course from '../routes/course';
 import School from '../routes/school';
+import About from '../routes/about';
 
 const App = () => (
 	<Fragment>
