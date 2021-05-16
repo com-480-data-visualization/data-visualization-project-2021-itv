@@ -1,11 +1,11 @@
 {
   "private": true,
-  "name": "osu! Visualisations",
-  "version": "0.0.1",
+  "name": "check_my_eval_rate",
+  "version": "0.0.2",
   "license": "MIT",
   "scripts": {
     "build": "preact build",
-    "build:gh": "GITHUB_PAGES=data-visualization-project-2021-osu preact build && dot-json ./build/manifest.json start_url \"/data-visualization-project-2021-osu/\"",
+    "build:gh": "GITHUB_PAGES=data-visualization-project-2021-cmer preact build && dot-json ./build/manifest.json start_url \"/data-visualization-project-2021-cmer/\"",
     "serve": "sirv build --port 8080 --cors --single",
     "dev": "preact watch",
     "lint": "eslint src",

@@ -1,6 +1,6 @@
 {
-  "name": "osu! Vizualisations",
-  "short_name": "osu! Vizu",
+  "name": "Check My Eval Rate",
+  "short_name": "CMER",
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait",

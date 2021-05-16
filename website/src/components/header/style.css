@@ -6,7 +6,7 @@
 	width: 100%;
 	height: 56px;
 	padding: 0;
-	background: #673AB7;
+	background: #B51F1F; /*#FF0000; */
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 	z-index: 50;
 }
@@ -21,13 +21,14 @@
 .header div h1 {
 	display: inline-block;
 	margin: 0px;
-	padding: 0 15px;
+	padding-right: 15px;
 }
 
-.header div h1 a {
+.header div a h1 {
 	font-size: 24px;
 	line-height: 56px;
 	font-weight: 400;
+	text-decoration: none;
 	color: #FFF;
 }
 

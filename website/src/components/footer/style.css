@@ -1,6 +1,6 @@
 #footer {
   color: #D0D0D0;
-  background-color: #2F2F2F;
+  background-color: #413D3A; /*#2F2F2F; */
   padding-top: 1.2em;
   padding-bottom: 1.2em;
 }
@@ -13,6 +13,6 @@
 }
 
 .link {
-  color: #D0D0D0;
+  color: #CAC7C7; /* #D0D0D0; */
   text-decoration: underline;
 }

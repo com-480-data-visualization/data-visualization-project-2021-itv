@@ -4,59 +4,48 @@ import { Link } from 'preact-router/match';
 import style from './style.css';
 import baseroute from '../../baseroute';
 
-import skillImprovement from '../../assets/images/skill-improvement.png';
-import webChart from '../../assets/images/web-chart.png';
+import schoolLeaderboard from '../../assets/images/leaderboard.png';
+import Tree from '../../assets/tree.js';
 
 class Home extends Component {
-  render() {
-    return (
+	render() {
+		return (
 			<section class={style.home}>
 				<h1>Data Visualization Project</h1>
-				<p>This project aims at visualizing osu! game data. 
-				These visualizations will help developers to adjust the osu! score evaluation system.</p>
+				<p>This project aims at visualizing EPFL's student particiaption rate to indicative feedback.
+				These visualizations aims at motivating students to provide a feedback on the course they follow by "gamifying" the evalutations: adding competition amongst schools.</p>
 				<p>Some information about our project. For more, please visit <Link href={`${baseroute}/about`}>the about page</Link>.</p>
 				<ul>
-					<li><a href="#osu!?">osu!?</a></li>
-					<li><a href="#problematic">Problematic</a></li>
-					<li><a href="#data">Data</a></li>
+					<li><Link href="#eval" title="Evaluations section">Evaluations</Link></li>
+					<li><Link href="#problematic" title="Problematic">Problematic</Link></li>
+					<li><Link href="#data" title="Data">Data</Link></li>
 				</ul>
-				<h2><span id="osu!?">osu!?</span></h2>
-				<p>Describe the gameplay</p>
-				<p>Describe the beatmaps</p>
-				<h2><span id="problematic">Problematic</span></h2>
+
+				<h2 id="eval">Evaluations</h2>
 				<p>
-					In osu!, beatmaps are created by the community and verified by staff members. 
-					There are already more than 100k validated beatmaps. 
-					Due to the large and ever increasing amount of beatmaps, evaluating their difficulty can not be done subjectively and has to be automated.
+					Once per semester, EPFL students can express their opinion about the course they are actually enrolled in: course material, teacher ability to teach, lectures quality, projects/labs quality and so on.
+				According to the "Centre d'Appui à l'Enseignement" (<Link href="https://www.epfl.ch/education/teaching/teaching-support/" title="CAPE website">CAPE</Link>), the participation rate has to be at least 60% for the indicative feedback to be representative.
+				</p>
+
+				<h2 id="problematic">Problematic</h2>
+				<p>
+					However, too little students take this opportunity to evaluate their courses. Depending on the section, the participation rate do not always reach the required pourcentage.
+					To address this issue, we thought that displaying some nice visualisations about the participation rate for each section or class and to compare them will create some competition amongst schools or programm and motivate student to fill their indicative feedbacks.
 				</p>
 				<p>
-					For that purpose, as of 2021 and since 2014, the difficulty of beatmaps is evaluated using a traditionnal algorithm (called ppv2) 
-					mostly based on the spacial and time distance of consecutive hit-circles and some form of accumulation of the difficulty across a whole beatmap. 
-					Based on that, scores are also given a difficulty value which is given in a unit called "pp" standing for "performance points". 
-					Each player is assigned a global pp value as a weighted sum (exponentially decreasing weight) of his scores ordered in descending pp values. 
+					For instance, this graphic could compare the overall participation of students per schools and could be splitted for both bachelor and master programs.
 				</p>
+				<img src={schoolLeaderboard} alt="School leaderboard" title="School leaderboard" />
 				<p>
-					Even though the ppv2 algorithm is regularly improved, it is still highly unbalanced as there are a lot of aspects of the real difficulty of beatmap 
-					for which no one yet has found a good way of estimating them. 
-					This leads to inaccuracy in the ranking of players and tentative of abuse of that inaccuracy from players and beatmap creators.
-					The goal of this project is to help finding the issues in the osu! score evaluation system by making some visualizations. 
+					In order to provide a more in-depth analysis, we split the analyse to represent one school or one course separately.
+					A way to display the structure of EPFL schools, program and courses could be done with a radial tree where the user could access to an in-depth analysis at school, program or course level by clicking on a link.
 				</p>
-				<p>
-					The figure bellow shows the evolution in total amount of good (300), slightly late/early (100) and very late/early (50) hits with respect to the playcount of the player. 
-					This shows that players improve their timing accuracy as they play more.
-				</p>
-				<img src={skillImprovement} alt="Second graphic. Wej." title="Second graphic. Wej." />
-				<p>
-					Next, the beatmaps are studied. 
-					To determine the overall tendencies, several beatmap features are visualized in the star chart below.
-					In this star chart the average feature levels are compared to the top-1000 most popular beatmaps' ones.
-				</p>
-				<img src={webChart} alt="Last graphic" title="Last graphic" />
-				<p>
-					In order to provide a more in-depth analysis, we need to have tools to analyse one beatmap separately. For that, take a look at the <a href={`${baseroute}/beatmaps`}>Beatmaps page</a>. 
-				</p>
-				<h2><span id="data">Data</span></h2>
+
+				<Tree />				
+
+				<h2 id="data">Add data</h2>
 				<p>And <em>Voilà</em>!</p>
+
 			</section>
 		)
 	};

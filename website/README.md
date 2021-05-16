@@ -1,4 +1,4 @@
-# Website for osu! Vizualisations
+# Website for Check My Eval Rate visualization project
 
 ## CLI Commands
 
