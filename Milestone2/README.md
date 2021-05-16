@@ -2,7 +2,7 @@
 ## Milestone 2
 
 ### Introduction  
-Every semester EPFL students are invited to provide a feed-back on the courses they follow. The evaluation period lasts 10 days. Students can rate every course they are enrolled in and leave the comments with critics, compliments or improvements they would make to the course. 
+Every semester EPFL students are invited to provide a feed-back on the courses they follow. The evaluation period lasts 10 days. Students can rate every course they are enrolled in and leave the comments with critics, compliments or improvements they would make to the course.
 
 ### Problematic  
 To extract valuable conclusions out of these feedbacks, it is important to have a participation rate above 60%. The goal of our project is to encourage students to take part in the course evaluations by gamifying the process and bringing some competition into it.  
@@ -28,12 +28,14 @@ Please have a look at our website since it better reflect the various vizualisat
 
 ### Tools
 
-* Javascript
-* D3
-* Preact
+* Javascript, HTML, CSS - basics
+* __D3.js__ for interactions with DOM and visualizations
+* __Preact__ for frontend
 
 ### Useful Lectures  
-
+* Lecture 1.2 "*Basic Web Development*": basic knowledge about HTML, CSS and SVG  
+* Lectures 2 and 3: "*Javascript 1 & 2*": basic knowledge about Javascript
+* Lecture 4.1 "*Data Driven Documents*": selectors, data binding, reading data  
 * Lecture 4 with D3
 * Lecture 6 with perception color
 
