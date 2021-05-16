@@ -7,13 +7,32 @@ Every semester EPFL students are invited to provide a feed-back on the courses t
 ### Problematic  
 To extract valuable conclusions out of these feedbacks, it is important to have a participation rate above 60%. The goal of our project is to encourage students to take part in the course evaluations by gamifying the process and bringing some competition into it.  
 
-
 ### Visualizations  
-__Home page__  
+
+#### Our website
+
+Our website ([available here](https://com-480-data-visualization.github.io/data-visualization-project-2021-cmer/)), is build with Preact, a lightweight version of React. It is currently structured on 4 distinct sections: the [home page](#home-page), the [school page](#school-page), the [course page](#course-page) and an [about page](#about-page). The choice of color is made to reflect the EPFL palette (described [here](https://www.epfl.ch/about/overview/identity/)), as well as the font, if available.
+
+We build our website automatically using Github Actions. For some unknown reason, the footer on the Github Pages hosted website is present twice on each page. Some link might not be working as well on the Github Pages website. It is not the case on our local build, we are investigating this issue. If we find so solution, we will probably host it elsewhere.
+
+#### Home page  
 The `Home` page of our website will contain some general information about our project as well as the leaderboard (see figure below) displaying the schools with the highest participation rates.   
 ![](../website/src/assets/images/leaderboard.png)
 
-__Course page__  
+Below this global ranking, you will find a radial tree representing, from the center to the edge of the tree: the various schools, for each school their program and for each program the courses that are linked to them. We would like every element to be a link to a related page on the website displaying some analysis about the indicative feedbacks. To have an idea of what it will look like, have a look on our welcome page on [our website](https://com-480-data-visualization.github.io/data-visualization-project-2021-cmer/).
+
+#### School page
+
+On the School page, you will be able to select a school and for each school see the overall participation rate of the students enrolled in this section. It allows a quick comparison of the various programs motivation. Some other visual elements could be rendered such as:
+
+* a ranking of the more evaluated courses
+* a ranking of the ones with the highest number of student registered
+* a ranking of the one with the higher rate of students outside the school offering the course (for instance: SV students for a ML course, in IC),…
+
+For these representation, we might use a [sortable bar chart](https://observablehq.com/@d3/sortable-bar-chart) to embed all these in one single chart or eventually a [Bubble chart](https://observablehq.com/@d3/bubble-chart) (bubbles are fun). A [scatterplot tour](https://observablehq.com/@d3/scatterplot-tour) (interactive or not) could be used to represent the number of student on the X axis in relation with the percentage of answer on the Y axis. This could help to determine if the number of enrolled student has an effect on the participation rate in the indicative feedback.
+
+#### Course page  
+
 The `Course` page of our website will contain the results of the evaluations for a given course. The user will be able to research the course by it's ID.  
 
 The figure below displays the number of students who have submitted their evaluations day by day for a given course.
@@ -24,7 +43,11 @@ The barplot below displays how many students are subscribed for a given course p
 For most part of the courses, the distribution of subscribed students of different schools is not even. In other words, 80% of students are very likely to come from the school which issued this course and the remaining 20% of students come from the different faculties (these numbers are arbitrary). In this case, the information about the minority schools will not be clearly visible in the above barplot. To fix this issue, the complementary barplot will be displayed (see figure below).  
 ![](../website/src/assets/images/percentage-per-school.png)
 
-Please have a look at our website since it better reflect the various vizualisations and how they will be displayed.
+Please have a look at our website since it better reflect the various visualizations and how they will be displayed.
+
+#### About page
+
+This page should contain no visualization but eventually some more information about the visualization, the project or the dataset we use.
 
 ### Tools
 
@@ -35,9 +58,10 @@ Please have a look at our website since it better reflect the various vizualisat
 ### Useful Lectures  
 * Lecture 1.2 "*Basic Web Development*": basic knowledge about HTML, CSS and SVG  
 * Lectures 2 and 3: "*Javascript 1 & 2*": basic knowledge about Javascript
-* Lecture 4.1 "*Data Driven Documents*": selectors, data binding, reading data  
-* Lecture 4 with D3
-* Lecture 6 with perception color
+* Lecture 4.2 "*Data Driven Documents*": selectors, data binding, reading data  
+* Lecture 5.2 "*Interactive D3*": axes, events
+* Lecture 6.1 "*Perception, Color*": choose the color palette for the plots  
+* Lecture 7.2 "*Do's and Don'ts*": guidelines for the bar charts
 
 ### Possible Improvements  
 * For the next evaluation period, collect the data on the fly, so that schools can have a "race"  (Bar Chart Race](https://observablehq.com/@d3/bar-chart-race))
