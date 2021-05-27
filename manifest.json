@@ -1,7 +1,7 @@
 {
-  "name": "Check My Eval Rate",
-  "short_name": "CMER",
-  "start_url": "/data-visualization-project-2021-cmer/",
+  "name": "International Tourism Visualizations",
+  "short_name": "ITV",
+  "start_url": "/data-visualization-project-2021-itv/",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#fff",

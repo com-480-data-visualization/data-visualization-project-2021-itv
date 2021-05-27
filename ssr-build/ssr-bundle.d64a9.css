@@ -30,7 +30,7 @@ img {
 	margin-right: 5%;
 }
 
-.container, section {
+.container, section.about {
 	max-width: 1000px;
 	margin-left: auto;
 	margin-right: auto;
@@ -128,59 +128,18 @@ img {
   color: #CAC7C7; /* #D0D0D0; */
   text-decoration: underline;
 }
+
+#country_details__3Eypl {
+  background-color: #D0D0D0;
+}
+#outbound_expense_section__pXH4Y {
+  /* background-color: cyan; */
+}
 .home__MseGd {
 	
 }
-
-.left__19-Qp {
-	float: left;
-	width: 30%;
-	padding-top: 12px;
-	/* margin-right: 70%; */
-	margin-top: 30px;
-	height: 1.2em;
+#about__3Ycn6 {
+  
 }
 
-.searchbar__SVCYp {
-	width: 90%;
-	height: 30px;
-	border-radius: 7px;
-}
-
-.right__CkDAn {
-	padding-top: 30px;
-	float: right;
-	padding: 20px;
-	width: 70%;
-}
-
-.row__1qqEd:after {
-	content: "";
-  display: table;
-  clear: both;
-}
-
-.value__2cQhp {
-	display: -ms-flexbox;
-	display: flex;
-	-ms-flex-align: center;
-	    align-items: center;
-}
-
-.features__h4u0D {
-	margin: 10px;
-	width: 90%;
-	background-color: #E8E8E8;
-	border-radius: 10px;
-}
-
-.info__17_Xk {
-	margin: 10px;
-	width: 90%;
-	padding: 5px;
-}
-.school__2_AwR {
-	
-}
-
-/*# sourceMappingURL=ssr-bundle.9d99d.css.map*/
+/*# sourceMappingURL=ssr-bundle.d64a9.css.map*/
