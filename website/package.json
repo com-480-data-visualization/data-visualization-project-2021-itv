@@ -1,11 +1,11 @@
 {
   "private": true,
-  "name": "check_my_eval_rate",
+  "name": "international_tourism_visualizations",
   "version": "0.0.2",
   "license": "MIT",
   "scripts": {
     "build": "preact build",
-    "build:gh": "GITHUB_PAGES=data-visualization-project-2021-cmer preact build && dot-json ./build/manifest.json start_url \"/data-visualization-project-2021-cmer/\"",
+    "build:gh": "GITHUB_PAGES=data-visualization-project-2021-itv preact build && dot-json ./build/manifest.json start_url \"/data-visualization-project-2021-itv/\"",
     "serve": "sirv build --port 8080 --cors --single",
     "dev": "preact watch",
     "lint": "eslint src",

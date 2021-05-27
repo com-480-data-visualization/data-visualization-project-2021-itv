@@ -8,8 +8,6 @@ import baseroute from '../baseroute';
 
 // Code-splitting is automated for `routes` directory
 import Home from '../routes/home';
-import Course from '../routes/course';
-import School from '../routes/school';
 import About from '../routes/about';
 
 const App = () => (
@@ -18,10 +16,6 @@ const App = () => (
 		<div id="app">
 			<Router>
 				<Home path={`${baseroute}/`} />
-				<School path={`${baseroute}/school`} />
-				<School path={`${baseroute}/school/:schoolID`} />
-				<Course path={`${baseroute}/course`} />
-				<Course path={`${baseroute}/course/:courseID`} />
 				<About path={`${baseroute}/about`} />
 			</Router>
 		</div>
