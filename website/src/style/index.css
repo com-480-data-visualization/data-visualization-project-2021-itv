@@ -27,7 +27,7 @@ img {
 	margin-right: 5%;
 }
 
-.container, section {
+.container, section.about {
 	max-width: 1000px;
 	margin-left: auto;
 	margin-right: auto;
