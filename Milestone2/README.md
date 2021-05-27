@@ -2,57 +2,42 @@
 ## Milestone 2
 
 ### Introduction  
-Every semester EPFL students are invited to provide a feed-back on the courses they follow. The evaluation period lasts 10 days. Students can rate every course they are enrolled in and leave the comments with critics, compliments or improvements they would make to the course.
+
+During the COVID-19 pandemic, when the majority of people were staying in their home to prevent the spread of the disease and the aircraft were grounded, some of us were dreaming of traveling again. Interested in some economical and demographical aspects, we wished to provide some insight about international tourism and how much countries contributed to it. On an other point of view, an ecological one, it could also be used to determine how much inhabitants of a country contribute to fill the air with carbon emissions and where efforts should be done to reach the emission level that were fixed.
 
 ### Problematic  
-To extract valuable conclusions out of these feedbacks, it is important to have a participation rate above 60%. The goal of our project is to encourage students to take part in the course evaluations by gamifying the process and bringing some competition into it.  
+
 
 ### Visualizations  
 
 #### Our website
 
-Our website ([available here](https://com-480-data-visualization.github.io/data-visualization-project-2021-cmer/)), is build with Preact, a lightweight version of React. It is currently structured on 4 distinct sections: the [home page](#home-page), the [school page](#school-page), the [course page](#course-page) and an [about page](#about-page). The choice of color is made to reflect the EPFL palette (described [here](https://www.epfl.ch/about/overview/identity/)), as well as the font, if available.
+Our website ([available here](https://com-480-data-visualization.github.io/data-visualization-project-2021-itv/)), is build with Preact, a lightweight version of React. It is currently structured on 
 
 We build our website automatically using Github Actions. For some unknown reason, the footer on the Github Pages hosted website is present twice on each page. Some link might not be working as well on the Github Pages website. It is not the case on our local build, we are investigating this issue. If we find so solution, we will probably host it elsewhere.
 
 #### Home page  
-The `Home` page of our website will contain some general information about our project as well as the leaderboard (see figure below) displaying the schools with the highest participation rates.   
-![](../website/src/assets/images/leaderboard.png)
+The `Home` page of our website will display an interactive zoomable choropleth map of the world. The data displayed will be either about inbound tourism (https://tourismteacher.com/inbound-tourism/), outbound tourism ([definition](https://tourismteacher.com/outbound-tourism/)) or overall expenses for travel for each country. This theme will be selectable on the left corner (using a select field). The map will show countries with different colors depending on the value for the country for the selected theme. A slider at the bottom of the map will allow to select the year the user is interested in. When overing a country, a tooltip will display the country name as well as the real value used to define the color.
 
-Below this global ranking, you will find a radial tree representing, from the center to the edge of the tree: the various schools, for each school their program and for each program the courses that are linked to them. We would like every element to be a link to a related page on the website displaying some analysis about the indicative feedbacks. To have an idea of what it will look like, have a look on our welcome page on [our website](https://com-480-data-visualization.github.io/data-visualization-project-2021-cmer/).
+![Scheme of the choropleth map]()
 
-#### School page
+We would like to make the countries clickable so that when a user select and click on a country, it is redirected later in the page where specific information about the country could be displayed. Three time-based line graphs (one per theme) or only one with possibility to select the themes to display will show the evolution of the inbound/outbound or expanses for a given country.
 
-On the School page, you will be able to select a school and for each school see the overall participation rate of the students enrolled in this section. It allows a quick comparison of the various programs motivation. Some other visual elements could be rendered such as:
+![Scheme of the time-based graph]()
 
-* a ranking of the more evaluated courses
-* a ranking of the ones with the highest number of student registered
-* a ranking of the one with the higher rate of students outside the school offering the course (for instance: SV students for a ML course, in IC),…
+Finally, it could be interesting to compare the countries we have data about on the expenses per number of out-going tourists. It could provide insight about the level of wealth (????) of countries and we might see clusters appear.
 
-For these representation, we might use a [sortable bar chart](https://observablehq.com/@d3/sortable-bar-chart) to embed all these in one single chart or eventually a [Bubble chart](https://observablehq.com/@d3/bubble-chart) (bubbles are fun). A [scatterplot tour](https://observablehq.com/@d3/scatterplot-tour) (interactive or not) could be used to represent the number of student on the X axis in relation with the percentage of answer on the Y axis. This could help to determine if the number of enrolled student has an effect on the participation rate in the indicative feedback.
-
-#### Course page  
-
-The `Course` page of our website will contain the results of the evaluations for a given course. The user will be able to research the course by it's ID.  
-
-The figure below displays the number of students who have submitted their evaluations day by day for a given course.
-![](../website/src/assets/images/day-by-day.png)  
-
-The barplot below displays how many students are subscribed for a given course per school and how many of them have evaluated it.
-![](../website/src/assets/images/per-school.png)  
-For most part of the courses, the distribution of subscribed students of different schools is not even. In other words, 80% of students are very likely to come from the school which issued this course and the remaining 20% of students come from the different faculties (these numbers are arbitrary). In this case, the information about the minority schools will not be clearly visible in the above barplot. To fix this issue, the complementary barplot will be displayed (see figure below).  
-![](../website/src/assets/images/percentage-per-school.png)
-
-Please have a look at our website since it better reflect the various visualizations and how they will be displayed.
+![Scheme of the expenses over outbound graph]()
 
 #### About page
 
-This page should contain no visualization but eventually some more information about the visualization, the project or the dataset we use.
+On the about page, we will describe the project, the context (Data Visualization class @ EPFL) as well as the dataset we used and its origin.
 
 ### Tools
 
 * Javascript, HTML, CSS - basics
 * __D3.js__ for interactions with DOM and visualizations
+* [amCharts](https://www.amcharts.com/) for advanced maps
 * __Preact__ for frontend
 
 ### Useful Lectures  
@@ -63,5 +48,8 @@ This page should contain no visualization but eventually some more information a
 * Lecture 6.1 "*Perception, Color*": choose the color palette for the plots  
 * Lecture 7.2 "*Do's and Don'ts*": guidelines for the bar charts
 
-### Possible Improvements  
-* For the next evaluation period, collect the data on the fly, so that schools can have a "race"  (Bar Chart Race](https://observablehq.com/@d3/bar-chart-race))
+### Possible enhancements
+
+* Since the information displayed on the choropleth map will depend on the population of the countries, we could imagine to add a switch allowing the user to select either absolute or relative data, the latter being normalized by the number inhabitant for each country.
+* It can be very interesting to add more information about the countries in the section dedicated to a specific country. Information such as demographics, culture, religion, money could be fetched (from WikiData for instance) and displayed.
+* In the same vein as the previous point, for a given country, we could fetch information about the change in the political or religious regime or when wars took place in these country to explain the variations about the graphs.

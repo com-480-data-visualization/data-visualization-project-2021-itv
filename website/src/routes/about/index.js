@@ -4,7 +4,7 @@ import style from './style.css';
 const About = () => (
 	<section class={style.about}>
 		<h1>About</h1>
-		<p>More information on this project here.</p>
+		<p>Here we will describe the project, the context (Data Visualization class @ EPFL) as well as the dataset we used and its origin.</p>
 	</section>
 );
 
