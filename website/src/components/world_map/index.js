@@ -2,6 +2,7 @@ import { h, Component } from 'preact';
 import { Link } from 'preact-router/match';
 
 import Slider from '@material-ui/core/Slider';
+import {MuiThemeProvider} from "@material-ui/core/styles";
 
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4maps from "@amcharts/amcharts4/maps";
@@ -11,11 +12,10 @@ import * as d3 from "d3";
 import style from './style.css';
 import baseroute from '../../baseroute';
 
-import worldMapImage from '../../assets/images/map.png';
-
 import {getDepPerCapitaByYear} from '../../data/utils';
 
 const marks = getYears()
+
 
 function getYears() {
 	let years = []
@@ -29,17 +29,18 @@ function getYears() {
 }
 
 class DiscreteSlider extends Component {
+
 	render() {
 		return (
-			<Slider
-				defaultValue={this.props.value}
-				aria-labelledby="discrete-slider-always"
-				step={1}
-				min={marks[0].value}
-				max={marks[marks.length-1].value}
-				marks={marks}
-				onChange={(event, value) => this.props.onChange(value)}
-			/>
+				<Slider
+					defaultValue={this.props.value}
+					aria-labelledby="discrete-slider-always"
+					step={1}
+					min={marks[0].value}
+					max={marks[marks.length-1].value}
+					marks={marks}
+					onChange={(event, value) => this.props.onChange(value)}
+				/>
 		);
 	}
 }
@@ -88,8 +89,8 @@ class Map extends Component {
 			polygonSeries.heatRules.push({
 				"property": "fill",
 				"target": polygonSeries.mapPolygons.template,
-				"min": am4core.color("#ffffff"),
-				"max": am4core.color("#0000ff"),
+				"min": am4core.color("#d8f3dc"),
+				"max": am4core.color("#081c15"),
 				// "dataField": "value",
 				"logarithmic": false,
 				"minValue": 0,
