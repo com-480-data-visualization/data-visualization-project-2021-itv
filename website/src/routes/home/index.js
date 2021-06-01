@@ -16,7 +16,7 @@ class Home extends Component {
 					<h2>Welcome</h2>
 				</div>
 
-				<WorldMap class={style.mapp}/>
+				<WorldMap/>
 
 				<CountryDetails countryCode='AFG' />
 

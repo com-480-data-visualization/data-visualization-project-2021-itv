@@ -1,6 +1,8 @@
 import { h, Component } from 'preact';
 import { Link } from 'preact-router/match';
 
+import Slider from '@material-ui/core/Slider';
+
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4maps from "@amcharts/amcharts4/maps";
 import am4geodata_worldLow from "@amcharts/amcharts4-geodata/worldLow";
@@ -13,10 +15,39 @@ import worldMapImage from '../../assets/images/map.png';
 
 import {getDepPerCapitaByYear} from '../../data/utils';
 
-class WorldMap extends Component {
-	componentDidMount() {
+const marks = getYears()
 
-		getDepPerCapitaByYear('1999', (data) => {
+function getYears() {
+	let years = []
+	for(var y = 1995; y < 2019; y++) {
+		years.push({
+			value: y,
+			label: y.toString()
+		})
+	}
+	return years
+}
+
+class DiscreteSlider extends Component {
+	render() {
+		return (
+			<Slider
+				defaultValue={this.props.value}
+				aria-labelledby="discrete-slider-always"
+				step={1}
+				min={marks[0].value}
+				max={marks[marks.length-1].value}
+				marks={marks}
+				onChange={(event, value) => this.props.onChange(value)}
+			/>
+		);
+	}
+}
+
+class Map extends Component {
+	yearSelected() {
+		console.log(this.props.year)
+		getDepPerCapitaByYear((this.props.year).toString(), (data) => {
 			const name = data['name']
 			const population = data['population']
 			const departures = data['departures']
@@ -90,6 +121,12 @@ class WorldMap extends Component {
 			self.map = map;
 
 		})
+	}
+	componentDidUpdate() {
+		this.yearSelected();
+	}
+	componentDidMount() {
+		this.yearSelected();
   }
 
 	componentWillUnmount() {
@@ -100,9 +137,35 @@ class WorldMap extends Component {
 
   render() {
     return (
-      <div id="chartdiv" style={{ width: "100%", height: "500px"}}></div>
-    );
+      	<div id="chartdiv" class={style.map}></div>
+    );  
 	}
 };
+
+class WorldMap extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			year: 2005
+		}
+	}
+
+	setYear(year) {
+		console.log('set year from world map')
+		this.setState({year: year})
+	}
+
+	render() {
+		return (
+			<div>
+				<Map year={this.state.year}/>
+				<DiscreteSlider
+					value={this.state.year}
+					onChange={(year) => {this.setYear(year)}}
+				/>
+			</div>
+		)
+	}
+}
 
 export default WorldMap;

@@ -1,0 +1,14 @@
+#years {
+  width: 80%;
+  margin: auto;
+  padding: 10%;
+}
+
+.map {
+  width: 90%;
+  height: 500px;
+}
+
+#mapWithSlider {
+  margin: auto;
+}
