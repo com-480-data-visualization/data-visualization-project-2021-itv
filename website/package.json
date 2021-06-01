@@ -29,6 +29,9 @@
     "sirv-cli": "1.0.3"
   },
   "dependencies": {
+    "@amcharts/amcharts4": "^4.10.18",
+    "@amcharts/amcharts4-geodata": "^4.1.20",
+    "d3": "^6.7.0",
     "preact": "^10.3.2",
     "preact-render-to-string": "^5.1.4",
     "preact-router": "^3.2.1"
