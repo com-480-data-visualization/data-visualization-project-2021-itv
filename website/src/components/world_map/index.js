@@ -47,7 +47,6 @@ class DiscreteSlider extends Component {
 
 class Map extends Component {
 	yearSelected() {
-		console.log(this.props.year)
 		getDepPerCapitaByYear((this.props.year).toString(), (data) => {
 			const name = data['name']
 			const population = data['population']
@@ -103,9 +102,9 @@ class Map extends Component {
 			heatLegend.orientation = "vertical";
 			heatLegend.series = polygonSeries;
 			heatLegend.width = am4core.percent(100);
-			heatLegend.minValue = 0
-			heatLegend.maxValue = 2
-			heatLegend.padding(10, 10, 10, 10)
+			heatLegend.minValue = 0;
+			heatLegend.maxValue = 2;
+			heatLegend.padding(10, 10, 10, 10);
 
 			polygonSeries.mapPolygons.template.events.on("over", function(ev) {
 				if (!isNaN(ev.target.dataItem.value)) {
@@ -123,9 +122,11 @@ class Map extends Component {
 
 		})
 	}
+
 	componentDidUpdate() {
 		this.yearSelected();
 	}
+
 	componentDidMount() {
 		this.yearSelected();
   }
@@ -152,8 +153,7 @@ class WorldMap extends Component {
 	}
 
 	setYear(year) {
-		console.log('set year from world map')
-		this.setState({year: year})
+		this.setState({year: year});
 	}
 
 	render() {
