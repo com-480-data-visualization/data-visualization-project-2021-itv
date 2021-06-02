@@ -14,6 +14,7 @@ import {getAllCountryCodes, getAllDepPerCapita, getDepPerCapitaByCountry, getDep
 class CountryDetails extends Component {
 
 	componentDidMount() {
+		const selectedCountryCode = this.props.countryCode;
 
 		am4core.useTheme(am4themes_animated);
 
@@ -35,19 +36,26 @@ class CountryDetails extends Component {
 			// properties
 			series.name = countryName;
 			// line width
-			series.strokeWidth = 2;
+			series.strokeWidth = 4;
 			// do not display missing data
 			series.connect = false;
+
+			// define opacities for selected and non selected countries
+			const opacity = (selectedCountryCode == countryCode) ? 1 : 0.3;
+
+			// reduce the opacity of non-selected countries
+			series.strokeOpacity = opacity;
 			// points 
 			var bullet = series.bullets.push(new am4charts.CircleBullet());
-			bullet.circle.radius = 2;
+			bullet.circle.radius = 3;
+			bullet.circle.opacity = opacity;
 			bullet.circle.stroke = am4core.color("#fff");
 
 			// line becomes thicker on mouse hover
 			var segment = series.segments.template;
 			segment.interactionsEnabled = true;
 			var hs = segment.states.create("hover");
-			hs.properties.strokeWidth = 6;
+			hs.properties.strokeWidth = 8;
 
 			// tooltip
 			series.tooltipText = "{name}";
@@ -80,7 +88,7 @@ class CountryDetails extends Component {
 			var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
 
 			getAllCountryCodes((codes) => {
-				for(var i = 0; i < 20; i++) {
+				for(var i = 0; i < 40; i++) {
 					createSeries(codes[i]['code'], codes[i]['name'])
 				}
 				/* Create a cursor */

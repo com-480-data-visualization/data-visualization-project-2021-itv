@@ -18,7 +18,7 @@ class Home extends Component {
 
 				<WorldMap/>
 
-				<CountryDetails countryCode='AFG' />
+				<CountryDetails countryCode='BE' />
 
 				<OutboundExpenseGraph />
 
