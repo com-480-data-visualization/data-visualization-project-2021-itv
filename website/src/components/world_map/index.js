@@ -34,6 +34,7 @@ class DiscreteSlider extends Component {
 		return (
 				<Slider
 					defaultValue={this.props.value}
+					value={this.props.value ? this.props.value : 2005}
 					aria-labelledby="discrete-slider-always"
 					step={1}
 					min={marks[0].value}
