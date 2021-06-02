@@ -2,44 +2,91 @@ import { h, Component, Fragment } from 'preact';
 import { Link } from 'preact-router/match';
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
+import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 
 import style from './style.css';
 import baseroute from '../../baseroute';
 
 import outBoundRatioPerYearsImage from '../../assets/images/tourism-by-year.png';
 
-import {getAllDepPerCapita, getDepPerCapitaByCountry, getDepPerCapitaByYear} from '../../data/utils';
+import {getAllCountryCodes, getAllDepPerCapita, getDepPerCapitaByCountry, getDepPerCapitaByYear} from '../../data/utils';
 
 class CountryDetails extends Component {
 
 	componentDidMount() {
-		getDepPerCapitaByCountry('BE', (data) => {
-				// Create chart instance
-				var chart = am4core.create("lineplot", am4charts.XYChart);
 
-				// Bind data
-				chart.data = data
+		am4core.useTheme(am4themes_animated);
 
-				// Create axes
-				var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
-				categoryAxis.dataFields.category = "year";
+		// create chart
+		var chart = am4core.create("lineplot", am4charts.XYChart);
+		this.chart = chart;
 
-				// Create value axis
-				var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+		function toggleSeries(series, over) {
+			series.segments.each(function(segment) {
+				segment.isHover = over;
+			});
+		}
 
-				// Create series
-				var series1 = chart.series.push(new am4charts.LineSeries());
-				series1.dataFields.valueY = "value";
-				series1.dataFields.categoryX = "year";
-				series1.name = "Departures per capita";
-				series1.strokeWidth = 3;
-				series1.tensionX = 0.7;
-				series1.bullets.push(new am4charts.CircleBullet());
+		function createSeries(countryCode, countryName) {
+			var series = chart.series.push(new am4charts.LineSeries());
+			// x and y values
+			series.dataFields.valueY = countryCode;
+			series.dataFields.categoryX = "year";
+			// properties
+			series.name = countryName;
+			// line width
+			series.strokeWidth = 2;
+			// do not display missing data
+			series.connect = false;
+			// points 
+			var bullet = series.bullets.push(new am4charts.CircleBullet());
+			bullet.circle.radius = 2;
+			bullet.circle.stroke = am4core.color("#fff");
 
-				// Add legend
-				chart.legend = new am4charts.Legend();
+			// line becomes thicker on mouse hover
+			var segment = series.segments.template;
+			segment.interactionsEnabled = true;
+			var hs = segment.states.create("hover");
+			hs.properties.strokeWidth = 6;
 
-				self.chart = chart;
+			// tooltip
+			series.tooltipText = "{name}";
+
+			// display tooltip for the closest line only
+			series.tooltip.events.on("shown", function(ev) {
+				toggleSeries(ev.target.targetSprite, true);
+			});
+			series.tooltip.events.on("hidden", function(ev) {
+				if (ev.target.targetSprite) {
+					toggleSeries(ev.target.targetSprite, false);
+				}
+				else {
+					chart.series.each(function(series) {
+						toggleSeries(series, false);
+					});
+				}
+			});
+
+			return series;
+		}
+
+		getAllDepPerCapita((data) => {
+			// bind data to the chart
+			chart.data = data;
+
+			// create X and Y axis
+			var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+			categoryAxis.dataFields.category = "year";
+			var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+
+			getAllCountryCodes((codes) => {
+				for(var i = 0; i < 20; i++) {
+					createSeries(codes[i]['code'], codes[i]['name'])
+				}
+				/* Create a cursor */
+				chart.cursor = new am4charts.XYCursor();
+				chart.cursor.maxTooltipDistance = -1;
+			})
 		})
 	}
 

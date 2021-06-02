@@ -27,24 +27,25 @@ export function getDepPerCapitaByYear(year, f) {
 export function getAllDepPerCapita(f) {
   d3.csv(depPerCapitaUrl).then(function(data) {
     let depPerCapita = []
-    for(var i = 0; i < data.length; i++) {
-      for(var year = 1995; year < 2019; year++) {
-        const y = year.toString()
-        depPerCapita.push({
-          'id': data[i]['CountryCode2'],
-          'name': data[i]['CountryName'],
-          'year': y,
-          'value': data[i][y]
-        })
+    for(var year = 1995; year < 2019; year++) {
+      const y = year.toString();
+      depPerCapita.push({
+        "year": y
+      })
+      for(var i = 0; i < data.length; i++) {
+        if(data[i][y] !== "") {
+          depPerCapita[depPerCapita.length-1][data[i]['CountryCode2']] = data[i][y]
+        }
       }
     }
+    f(depPerCapita)
   })
 }
 
 // 2-digit country code
 export function getDepPerCapitaByCountry(countryCode, f) {
-  d3.csv(depPerCapitaUrl).then(function(data){
-    let depPerCapita = []
+  d3.csv(depPerCapitaUrl).then(function(data) {
+    let depPerCapita = [];
     for(var i = 0; i < data.length; i++) {
       if(data[i]['CountryCode2'] === countryCode) {
         for(var year = 1995; year < 2019; year++) {
@@ -52,13 +53,28 @@ export function getDepPerCapitaByCountry(countryCode, f) {
           depPerCapita.push({
             'id': data[i]['CountryCode2'],
             'name': data[i]['CountryName'],
-            'year': y, 
-            'value': data[i][y]
+            'year': y 
           })
+          if (data[i][y] !== "") {
+            depPerCapita[depPerCapita.length-1]['value'] = data[i][y];
+          } 
         }
         break;
       }
     }
     f(depPerCapita);
+  })
+}
+
+export function getAllCountryCodes(f) {
+  d3.csv(depPerCapitaUrl).then(function(data) {
+    let countryCodes = [];
+    for(var i = 0; i < data.length; i++) {
+      countryCodes.push({
+        'code': data[i]['CountryCode2'],
+        'name': data[i]['CountryName']
+      })
+    }
+    f(countryCodes)
   })
 }
