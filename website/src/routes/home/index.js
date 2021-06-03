@@ -9,6 +9,24 @@ import style from './style.css';
 import baseroute from '../../baseroute';
 
 class Home extends Component {
+	
+	constructor(props) {
+		super(props);
+		this.state = {
+			year: '',
+			countryCode: ''
+
+		}
+	}
+
+	setCountry(newCountryCode) {
+		const oldYear = this.state.year;
+		this.setState({
+			year: oldYear,
+			countryCode: newCountryCode
+		})
+	}
+
 	render() {
 		return (
 			<section class={style.home}>
@@ -16,9 +34,11 @@ class Home extends Component {
 					<h2>Welcome</h2>
 				</div>
 
-				<WorldMap/>
+				<WorldMap onCountryChange={(c) => {this.setCountry(c)}} />
 
-				<CountryDetails countryCode='BE' />
+				<CountryDetails 
+					countryCode={this.state.countryCode} 
+				/>
 
 				<OutboundExpenseGraph />
 

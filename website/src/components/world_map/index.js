@@ -13,6 +13,7 @@ import style from './style.css';
 import baseroute from '../../baseroute';
 
 import {getDepPerCapitaByYear} from '../../data/utils';
+import { rgbToHsl } from '@amcharts/amcharts4/.internal/core/utils/Colors';
 
 const marks = getYears()
 
@@ -47,15 +48,19 @@ class DiscreteSlider extends Component {
 }
 
 class Map extends Component {
+
 	yearSelected() {
+		// Create map instance
+		let map = am4core.create("chartdiv", am4maps.MapChart);
+		this.map = map;
+
+		let f = this.props.changeCountry;
+
 		getDepPerCapitaByYear((this.props.year).toString(), (data) => {
 			const name = data['name']
 			const population = data['population']
 			const departures = data['departures']
 			const value = data['value']
-
-			// Create map instance
-			let map = am4core.create("chartdiv", am4maps.MapChart);
 
 			// Set map definition
 			map.geodata = am4geodata_worldLow;
@@ -85,6 +90,7 @@ class Map extends Component {
 			// Add heat rule
 			/* TODO: for some reason heatRules do not interpolate between 
 				min and max data values, this is why they are manually set (0 and 2)
+				Answer: because of Hong Kong
 				*/
 			polygonSeries.heatRules.push({
 				"property": "fill",
@@ -107,7 +113,8 @@ class Map extends Component {
 			heatLegend.maxValue = 2;
 			heatLegend.padding(10, 10, 10, 10);
 
-			polygonSeries.mapPolygons.template.events.on("over", function(ev) {
+			// display the tooltip when the mouse is over a given country
+			polygonTemplate.events.on("over", function(ev) {
 				if (!isNaN(ev.target.dataItem.value)) {
 					heatLegend.valueAxis.showTooltipAt(ev.target.dataItem.value)
 				} else {
@@ -119,12 +126,23 @@ class Map extends Component {
 				heatLegend.valueAxis.hideTooltip();
 			});
 
-			self.map = map;
+			polygonTemplate.events.on("hit", function(ev) {
+				var data = ev.target.dataItem.dataContext;
+				f(data.id);
+			})
 
 		})
 	}
 
-	componentDidUpdate() {
+	disposeChart() {
+    if (this.map) {
+      this.map.dispose();
+    }
+	}
+
+	componentDidUpdate(oldProps) {
+		this.disposeChart();
+		// TODO: not sure this is optimal
 		this.yearSelected();
 	}
 
@@ -133,14 +151,12 @@ class Map extends Component {
   }
 
 	componentWillUnmount() {
-    if (this.map) {
-      this.map.dispose();
-    }
+		this.disposeChart();
   }
 
   render() {
     return (
-      	<div id="chartdiv" class={style.map}></div>
+      	<div id="chartdiv" class={style.map} onCountryChange={this.props.onCountryChange}></div>
     );  
 	}
 };
@@ -157,10 +173,14 @@ class WorldMap extends Component {
 		this.setState({year: year});
 	}
 
+
 	render() {
 		return (
 			<div>
-				<Map year={this.state.year}/>
+				<Map 
+					year={this.state.year}
+					changeCountry={this.props.onCountryChange}
+				/>
 				<DiscreteSlider
 					value={this.state.year}
 					onChange={(year) => {this.setYear(year)}}

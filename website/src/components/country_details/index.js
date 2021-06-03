@@ -11,7 +11,17 @@ import outBoundRatioPerYearsImage from '../../assets/images/tourism-by-year.png'
 
 import {getAllCountryCodes, getAllDepPerCapita, getDepPerCapitaByCountry, getDepPerCapitaByYear} from '../../data/utils';
 
+const selectedCountryOpacity = 1;
+const nonSelectedCountryOpacity = 0.3;
+
 class CountryDetails extends Component {
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			seriesIndex: undefined
+		}
+	}
 
 	componentDidMount() {
 		const selectedCountryCode = this.props.countryCode;
@@ -35,13 +45,14 @@ class CountryDetails extends Component {
 			series.dataFields.categoryX = "year";
 			// properties
 			series.name = countryName;
+			series.id = countryCode;
 			// line width
 			series.strokeWidth = 4;
 			// do not display missing data
 			series.connect = false;
 
 			// define opacities for selected and non selected countries
-			const opacity = (selectedCountryCode == countryCode) ? 1 : 0.3;
+			const opacity = (selectedCountryCode == countryCode) ? selectedCountryOpacity : nonSelectedCountryOpacity;
 
 			// reduce the opacity of non-selected countries
 			series.strokeOpacity = opacity;
@@ -98,11 +109,34 @@ class CountryDetails extends Component {
 		})
 	}
 
+	findSeriesByCountryCode(countryCode) {
+		for(var i = 0; i < this.chart.series.length; i++) {
+			if(this.chart.series._values[i].id == countryCode) {
+				return this.chart.series._values[i];
+			}
+		}
+	}
+
 	componentWillUnmount() {
     if (this.chart) {
       this.chart.dispose();
     }
   }
+
+	componentDidUpdate(oldProps) {
+		if(oldProps.countryCode != this.props.countryCode) {
+			let newSelectedLine = this.findSeriesByCountryCode(this.props.countryCode)
+			if(newSelectedLine !== undefined) {
+				newSelectedLine.strokeOpacity = selectedCountryOpacity;
+			}
+			if(oldProps.countryCode !== '') {
+				let oldSelectedLine = this.findSeriesByCountryCode(oldProps.countryCode)
+				if(oldSelectedLine !== undefined) {
+					oldSelectedLine.strokeOpacity = nonSelectedCountryOpacity;
+				}
+			}
+		}
+	}
 
   render() {
 		return (
