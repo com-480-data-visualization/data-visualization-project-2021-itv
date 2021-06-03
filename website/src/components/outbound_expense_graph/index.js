@@ -8,8 +8,6 @@ import * as d3 from "d3";
 
 import {getDepExpPopByYear} from '../../data/utils';
 
-import outboundExpenseImage from '../../assets/images/bubble-plot.png';
-
 class OutboundExpenseGraph extends Component {
 
 	constructor(props) {
@@ -31,17 +29,14 @@ class OutboundExpenseGraph extends Component {
 			// Remove too small data
 			const data = _data.filter(e => e.departures > 1 && e.expenditures > 1)
 
-			const expRatio = 1000000000;
-			const depRatio = 1000000
-
 			let minDep = data[0].departures;
-			let maxDep = data[0].departures;// / depRatio;
+			let maxDep = data[0].departures;
 			let minExp = data[0].expenditures;
-			let maxExp = data[0].expenditures;// / expRatio;
+			let maxExp = data[0].expenditures;
 			let minPop = data[0].population;
 			let maxPop = data[0].population;
 
-			let continents = [];//(data.filter(e => e['continent'])).unique();
+			let continents = [];
 			
 			// Search for continent, min and max values for axes
 			for (let i = 0; i < data.length; ++i) {
@@ -88,13 +83,15 @@ class OutboundExpenseGraph extends Component {
 					.attr("transform","translate("+margin.left+","+margin.top+")");
 
 			// Add axis
-			let x = d3.scaleLog().clamp(true)
-				.domain([minDep, maxDep+1.05])
+			let x = d3.scaleLog()
+				.domain([Math.floor(minDep), Math.ceil(maxDep)])
 				.range([0, width])
+				.clamp(true)
 				.nice();
-			let y = d3.scaleLog().clamp(true)
-				.domain([minExp, maxExp*1.05])
+			let y = d3.scaleLog()
+				.domain([Math.floor(minExp), Math.ceil(maxExp+1)])
 				.range([height, 0])	// Inverse since starting from top left
+				.clamp(true)
 				.nice();
 			let z = d3.scaleLinear()
 				.domain([minPop, maxPop])
@@ -102,9 +99,9 @@ class OutboundExpenseGraph extends Component {
 
 			this.svg.append("g")
 				.attr("transform", "translate(0,"+height+")")
-				.call(d3.axisBottom(x));
+				.call(d3.axisBottom(x).ticks(8));
 			this.svg.append("g")
-				.call(d3.axisLeft(y));
+				.call(d3.axisLeft(y).ticks(8));
 
 			// To display a color per continent
 			let continentColor = d3.scaleOrdinal()
@@ -187,7 +184,7 @@ class OutboundExpenseGraph extends Component {
 		});
 	}
 
-	componentDidUpdate(oldProps) {
+	componentDidUpdate() {
 		this.disposeChart();
 		this.updatePlot();
 	}
@@ -205,12 +202,6 @@ class OutboundExpenseGraph extends Component {
 					<div id="bubbleplot" style="position: relative;">
 
 					</div>
-					{
-					<div id="outbound_expense_graph">
-						Here will be displayed the outbound vs expense graph and some additionnal infos.
-						<img src={outboundExpenseImage} alt="Bubble plot comparing the expentiture per number of outbound tourists for each country" title="Expenditures over Outbound bubble plot"/>
-					</div>
-					}
 				</div>
 			</div>
 		)
