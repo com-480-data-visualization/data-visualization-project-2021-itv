@@ -11,8 +11,21 @@ import outBoundRatioPerYearsImage from '../../assets/images/tourism-by-year.png'
 
 import {getAllCountryCodes, getAllDepPerCapita, getCountryContinent, getDepPerCapitaByCountry, getDepPerCapitaByYear, getDepPerCapitaByContinent} from '../../data/utils';
 
+// TODO: replace these by objects
 const selectedCountryOpacity = 1;
 const nonSelectedCountryOpacity = 0.3;
+
+const selectedLineStyle = {
+	strokeWidth: 8, 
+	strokeOpacity: 1, 
+	zIndex: 10
+}
+
+const nonSelectedLineStyle = {
+	strokeWidth: 4, 
+	strokeOpacity: 0.3, 
+	zIndex: undefined
+}
 
 class CountryDetails extends Component {
 
@@ -39,21 +52,24 @@ class CountryDetails extends Component {
 			series.connect = false;
 	
 			// define opacities for selected and non selected countries
-			const opacity = (selectedCountryCode == countryCode) ? selectedCountryOpacity : nonSelectedCountryOpacity;
+			const lineStyle = (selectedCountryCode == countryCode) ? selectedLineStyle : nonSelectedLineStyle;
 	
 			// reduce the opacity of non-selected countries
-			series.strokeOpacity = opacity;
+			series.strokeOpacity = lineStyle.strokeOpacity;
+			series.strokeWidth = lineStyle.strokeWidth;
+			series.zIndex = lineStyle.zIndex;
 			// points 
 			var bullet = series.bullets.push(new am4charts.CircleBullet());
 			bullet.circle.radius = 3;
-			bullet.circle.opacity = opacity;
+			bullet.circle.opacity = lineStyle.strokeOpacity;
 			bullet.circle.stroke = am4core.color("#fff");
 	
-			// line becomes thicker on mouse hover
+			//line becomes thicker on mouse hover
 			var segment = series.segments.template;
 			segment.interactionsEnabled = true;
-			var hs = segment.states.create("hover");
-			hs.properties.strokeWidth = 8;
+			// var hs = segment.states.create("hover");
+			// hs.properties.strokeWidth = 6;
+			// hs.properties.strokeOpacity = 0.5;
 	
 			// tooltip
 			series.tooltipText = "{name}";
@@ -118,6 +134,14 @@ class CountryDetails extends Component {
 
 	componentDidUpdate(oldProps) {
 
+		function changeLineStyle(line, style) {
+			line.strokeWidth = style.strokeWidth;
+			line.strokeOpacity = style.strokeOpacity;
+			line.zIndex = style.zIndex;
+			line.bulletsContainer.opacity = style.strokeOpacity;
+			line.bulletsContainer.zIndex = style.zIndex;
+		}
+
 		function findSeriesByCountryCode(countryCode) {
 			for(var i = 0; i < chart.series.length; i++) {
 				if(chart.series._values[i].id == countryCode) {
@@ -129,12 +153,14 @@ class CountryDetails extends Component {
 		function highlightSelectedCountry(oldProps, newProps) {
 			let newSelectedLine = findSeriesByCountryCode(newProps.countryCode)
 			if(newSelectedLine !== undefined) {
-				newSelectedLine.strokeOpacity = selectedCountryOpacity;
+				// newSelectedLine.strokeOpacity = selectedCountryOpacity;
+				changeLineStyle(newSelectedLine, selectedLineStyle);
 			}
 			if(oldProps.countryCode !== '') {
 				let oldSelectedLine = findSeriesByCountryCode(oldProps.countryCode)
 				if(oldSelectedLine !== undefined) {
-					oldSelectedLine.strokeOpacity = nonSelectedCountryOpacity;
+					// oldSelectedLine.strokeOpacity = nonSelectedCountryOpacity;
+					changeLineStyle(oldSelectedLine, nonSelectedLineStyle);
 				}
 			}
 		}
