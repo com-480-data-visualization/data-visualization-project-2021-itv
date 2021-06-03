@@ -47,13 +47,8 @@ class Home extends Component {
 					countryCode={this.state.countryCode} 
 					continent={this.state.continent}
 				/>
-
+				
 				<OutboundExpenseGraph />
-
-				<div class="container">
-					<h2 id="data">Add data</h2>
-					<p>And <em>Voilà</em>!</p>
-				</div>
 
 			</section>
 		)

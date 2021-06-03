@@ -5,6 +5,7 @@ import * as d3 from "d3";
 
 // TODO: for some reason it does not work with import
 const depPerCapitaUrl = '../assets/data/dep_per_capita.csv';
+const fullDataset = '../assets/data/full_dataset.csv';
 
 export function getDepPerCapitaByYear(year, f) {
   d3.csv(depPerCapitaUrl).then(function(data) {
@@ -111,4 +112,27 @@ export function getCountryContinent(countryCode, f) {
     }
     f(continent);
   })
+}
+
+export function getDepExpPopByYear(year, callback) {
+  d3.csv(fullDataset).then(data => {
+    const popYear = year.toString() + '_pop';
+    const expYear = year.toString() + '_exp';
+    const depYear = year.toString() + '_dep';
+    const dpcYear = year.toString() + '_dpc';
+    
+    let result = [];
+    data.forEach(e => {
+      result.push({
+        'id': e.CountryCode2,
+        'name': e.CountryName,
+        'population': e[popYear].length != 0 ? parseFloat(e[popYear]) : 0,
+        'departures': e[depYear].length != 0 ? parseFloat(e[depYear]) : 0,
+        'expenditures': e[expYear].length != 0 ? parseFloat(e[expYear]) : 0,
+        'departures_per_capita': e[dpcYear].length != 0 ? parseFloat(e[dpcYear]) : 0,
+        'continent': e['Continent']
+      })
+    });
+    callback(result);
+  }).catch(err => {if (err) console.log(`Error while openning ${fullDataset}`, err) });
 }
