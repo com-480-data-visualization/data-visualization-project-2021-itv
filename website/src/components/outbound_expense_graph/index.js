@@ -21,7 +21,7 @@ class OutboundExpenseGraph extends Component {
 
 	updatePlot() {
 		console.log('Building plot');
-		let margin = {top: 10, bottom: 80, left: 150, right: 50};
+		let margin = {top: 10, bottom: 80, left: 80, right: 50};
 		let full_width = 1000;
 		let full_height = 500;
 		let width = full_width - margin.left - margin.right;
@@ -34,11 +34,11 @@ class OutboundExpenseGraph extends Component {
 			const expRatio = 1000000000;
 			const depRatio = 1000000
 
-			let minDep = 1;
+			let minDep = data[0].departures;
 			let maxDep = data[0].departures;// / depRatio;
-			let minExp = 1;
+			let minExp = data[0].expenditures;
 			let maxExp = data[0].expenditures;// / expRatio;
-			let minPop = 0;
+			let minPop = data[0].population;
 			let maxPop = data[0].population;
 
 			let continents = [];//(data.filter(e => e['continent'])).unique();
@@ -89,15 +89,15 @@ class OutboundExpenseGraph extends Component {
 			// Add axis
 			let x = d3.scaleLog().clamp(true)
 				.domain([minDep, maxDep+1.05])
-				.range([ 0, width])
+				.range([0, width])
 				.nice();
 			let y = d3.scaleLog().clamp(true)
 				.domain([minExp, maxExp*1.05])
-				.range([ height, 0])	// Inverse since starting from top left
+				.range([height, 0])	// Inverse since starting from top left
 				.nice();
 			let z = d3.scaleLinear()
 				.domain([minPop, maxPop])
-				.range([ 10, 50]);
+				.range([5, 60]);
 
 			this.svg.append("g")
 				.attr("transform", "translate(0,"+height+")")
@@ -110,23 +110,61 @@ class OutboundExpenseGraph extends Component {
 				.domain(continents)
 				.range(d3.schemeSet2)
 
+			const Tooltip = d3.select('#bubbleplot').style('position', 'relative')
+				.append('div')
+					.style('opacity', 0)
+					.attr('class', 'tooltip')
+					.style('position', 'absolute')
+					.style('background-color', 'white')
+					.style('border', 'solid')
+					.style('border-radius', '5px')
+					.style('border-color', 'black')
+					.style('padding', '5px');
+			
+			// Create interactive functions
+			const showToolTip = m => {
+				Tooltip.style('opacity', 1);
+			};
+
+			const getToolTipData = m => {
+				let s = m.name +' ('+m.continent+")<br />";
+				s += "Departures: " + m.departures + "<br />";
+				s += "Expenditures: " + m.population + "<br />";
+				s += "Population: " + m.population + "<br />";
+				return s;
+			}
+			const mousemove = m => {
+				Tooltip
+					.html(getToolTipData(m))
+					.style('left', (margin.left + d3.mouse(d3.event.currentTarget)[0] + 15) + 'px')
+					.style('top', (margin.top + d3.mouse(d3.event.currentTarget)[1] + 15) + 'px');
+			};
+
+			const hideToolTip = m => {
+				Tooltip
+					.style('opacity', 0);
+			};
+
 			this.svg.append('g')
 				.selectAll('dot')
-				.data(data)
+				// Sort data for the largest circle to be draw first
+				.data(data.sort((e, f) => f.population - e.population))
 				.enter()
 				.append('circle')
 					.attr('cx', d => x(d.departures))
 					.attr('cy', d => y(d.expenditures))
 					.attr('r', d => z(d.population))
 					.style("fill", d => continentColor(d.continent))
-					.style("opacity", "0.5")
+					.style("opacity", "0.6")
 					.attr("stroke", "black")
+				.on('mouseover', showToolTip)
+				.on('mousemove', mousemove)
+				.on('mouseleave', hideToolTip);
 		});
 	}
 
 	componentDidUpdate(oldProps) {
 		this.disposeChart();
-		// TODO: not sure this is optimal
 		this.updatePlot();
 	}
 
