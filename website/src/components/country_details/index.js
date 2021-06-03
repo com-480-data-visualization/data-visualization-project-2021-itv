@@ -9,28 +9,14 @@ import baseroute from '../../baseroute';
 
 import outBoundRatioPerYearsImage from '../../assets/images/tourism-by-year.png';
 
-import {getAllCountryCodes, getAllDepPerCapita, getDepPerCapitaByCountry, getDepPerCapitaByYear} from '../../data/utils';
+import {getAllCountryCodes, getAllDepPerCapita, getCountryContinent, getDepPerCapitaByCountry, getDepPerCapitaByYear, getDepPerCapitaByContinent} from '../../data/utils';
 
 const selectedCountryOpacity = 1;
 const nonSelectedCountryOpacity = 0.3;
 
 class CountryDetails extends Component {
 
-	constructor(props) {
-		super(props);
-		this.state = {
-			seriesIndex: undefined
-		}
-	}
-
-	componentDidMount() {
-		const selectedCountryCode = this.props.countryCode;
-
-		am4core.useTheme(am4themes_animated);
-
-		// create chart
-		var chart = am4core.create("lineplot", am4charts.XYChart);
-		this.chart = chart;
+	drawLineChartForContinent() {
 
 		function toggleSeries(series, over) {
 			series.segments.each(function(segment) {
@@ -39,6 +25,7 @@ class CountryDetails extends Component {
 		}
 
 		function createSeries(countryCode, countryName) {
+
 			var series = chart.series.push(new am4charts.LineSeries());
 			// x and y values
 			series.dataFields.valueY = countryCode;
@@ -50,10 +37,10 @@ class CountryDetails extends Component {
 			series.strokeWidth = 4;
 			// do not display missing data
 			series.connect = false;
-
+	
 			// define opacities for selected and non selected countries
 			const opacity = (selectedCountryCode == countryCode) ? selectedCountryOpacity : nonSelectedCountryOpacity;
-
+	
 			// reduce the opacity of non-selected countries
 			series.strokeOpacity = opacity;
 			// points 
@@ -61,16 +48,16 @@ class CountryDetails extends Component {
 			bullet.circle.radius = 3;
 			bullet.circle.opacity = opacity;
 			bullet.circle.stroke = am4core.color("#fff");
-
+	
 			// line becomes thicker on mouse hover
 			var segment = series.segments.template;
 			segment.interactionsEnabled = true;
 			var hs = segment.states.create("hover");
 			hs.properties.strokeWidth = 8;
-
+	
 			// tooltip
 			series.tooltipText = "{name}";
-
+	
 			// display tooltip for the closest line only
 			series.tooltip.events.on("shown", function(ev) {
 				toggleSeries(ev.target.targetSprite, true);
@@ -85,9 +72,16 @@ class CountryDetails extends Component {
 					});
 				}
 			});
-
+	
 			return series;
 		}
+
+		// create chart
+		var chart = am4core.create("lineplot", am4charts.XYChart);
+		this.chart = chart;
+
+		const continent = this.props.continent;
+		const selectedCountryCode = this.props.countryCode;
 
 		getAllDepPerCapita((data) => {
 			// bind data to the chart
@@ -100,7 +94,9 @@ class CountryDetails extends Component {
 
 			getAllCountryCodes((codes) => {
 				for(var i = 0; i < codes.length; i++) {
-					createSeries(codes[i]['code'], codes[i]['name'])
+					if(codes[i]['continent'] === continent) {
+						createSeries(codes[i]['code'], codes[i]['name'])
+					}
 				}
 				/* Create a cursor */
 				chart.cursor = new am4charts.XYCursor();
@@ -109,12 +105,9 @@ class CountryDetails extends Component {
 		})
 	}
 
-	findSeriesByCountryCode(countryCode) {
-		for(var i = 0; i < this.chart.series.length; i++) {
-			if(this.chart.series._values[i].id == countryCode) {
-				return this.chart.series._values[i];
-			}
-		}
+	componentDidMount() {
+		am4core.useTheme(am4themes_animated);
+		this.drawLineChartForContinent();
 	}
 
 	componentWillUnmount() {
@@ -124,16 +117,41 @@ class CountryDetails extends Component {
   }
 
 	componentDidUpdate(oldProps) {
-		if(oldProps.countryCode != this.props.countryCode) {
-			let newSelectedLine = this.findSeriesByCountryCode(this.props.countryCode)
+
+		function findSeriesByCountryCode(countryCode) {
+			for(var i = 0; i < chart.series.length; i++) {
+				if(chart.series._values[i].id == countryCode) {
+					return chart.series._values[i];
+				}
+			}
+		}
+
+		function highlightSelectedCountry(oldProps, newProps) {
+			let newSelectedLine = findSeriesByCountryCode(newProps.countryCode)
 			if(newSelectedLine !== undefined) {
 				newSelectedLine.strokeOpacity = selectedCountryOpacity;
 			}
 			if(oldProps.countryCode !== '') {
-				let oldSelectedLine = this.findSeriesByCountryCode(oldProps.countryCode)
+				let oldSelectedLine = findSeriesByCountryCode(oldProps.countryCode)
 				if(oldSelectedLine !== undefined) {
 					oldSelectedLine.strokeOpacity = nonSelectedCountryOpacity;
 				}
+			}
+		}
+
+		var chart = this.chart;
+
+		if(oldProps.countryCode != this.props.countryCode) {
+			if(this.props.continent != oldProps.continent) {
+				// dispose the chart
+				if(chart) {
+					chart.dispose();
+				}
+				// draw the chart for the new continent
+				this.drawLineChartForContinent();
+			} else {
+				// highlight the new line and hide the old selected one
+				highlightSelectedCountry(oldProps, this.props);
 			}
 		}
 	}

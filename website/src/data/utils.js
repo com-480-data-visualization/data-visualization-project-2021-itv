@@ -72,9 +72,43 @@ export function getAllCountryCodes(f) {
     for(var i = 0; i < data.length; i++) {
       countryCodes.push({
         'code': data[i]['CountryCode2'],
-        'name': data[i]['CountryName']
+        'name': data[i]['CountryName'],
+        'continent': data[i]['Continent']
       })
     }
     f(countryCodes)
+  })
+}
+
+export function getDepPerCapitaByContinent(continent, f) {
+  d3.csv(depPerCapitaUrl).then(function(data) {
+    let depPerCapita = []
+    for(var year = 1995; year < 2019; year++) {
+      const y = year.toString();
+      depPerCapita.push({
+        "year": y
+      })
+      for(var i = 0; i < data.length; i++) {
+        if(data[i][y] != "" && data[i]['Continent'] === continent) {
+          const dataIndex = depPerCapita.length-1
+          depPerCapita[dataIndex][data[i]['CountryCode2']] = data[i][y]
+          depPerCapita[dataIndex]['Continent'] = continent;
+        }
+      }
+    }
+    f(depPerCapita)
+  })
+}
+
+export function getCountryContinent(countryCode, f) {
+  d3.csv(depPerCapitaUrl).then(function(data) {
+    let continent = ""
+    for(var i = 0; i < data.length; i++) {
+      if(data[i]['CountryCode2'] === countryCode) {
+        continent = data[i]['Continent'];
+        break;
+      }
+    }
+    f(continent);
   })
 }
