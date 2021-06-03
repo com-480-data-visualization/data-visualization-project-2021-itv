@@ -38,13 +38,8 @@ class Home extends Component {
 				<CountryDetails 
 					countryCode={this.state.countryCode} 
 				/>
-
+				
 				<OutboundExpenseGraph />
-
-				<div class="container">
-					<h2 id="data">Add data</h2>
-					<p>And <em>Voilà</em>!</p>
-				</div>
 
 			</section>
 		)
