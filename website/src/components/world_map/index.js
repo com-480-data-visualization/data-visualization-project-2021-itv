@@ -135,9 +135,9 @@ class Map extends Component {
 	}
 
 	disposeChart() {
-    if (this.map) {
+    //if (this.map) {
       this.map.dispose();
-    }
+    //}
 	}
 
 	componentDidUpdate(oldProps) {
@@ -173,7 +173,6 @@ class WorldMap extends Component {
 		this.setState({year: year});
 	}
 
-
 	render() {
 		return (
 			<div>
@@ -183,7 +182,7 @@ class WorldMap extends Component {
 				/>
 				<DiscreteSlider
 					value={this.state.year}
-					onChange={(year) => {this.setYear(year)}}
+					onChange={(year) => {this.setYear(year); this.props.onYearChange(year)}}
 				/>
 			</div>
 		)

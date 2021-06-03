@@ -13,19 +13,18 @@ class OutboundExpenseGraph extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			year: 2005
+			year: 2005,
 		};
 	}
 
 	updatePlot() {
-		console.log('Building plot');
 		let margin = {top: 10, bottom: 40, left: 100, right: 50};
 		let full_width = 1000;
 		let full_height = 550;
 		let width = full_width - margin.left - margin.right;
 		let height = full_height - margin.top - margin.bottom;
 
-		getDepExpPopByYear(this.state.year, _data => {
+		getDepExpPopByYear(this.props.year, _data => {
 			// Remove too small data
 			const data = _data.filter(e => e.departures > 1 && e.expenditures > 1)
 
@@ -184,9 +183,16 @@ class OutboundExpenseGraph extends Component {
 		});
 	}
 
-	componentDidUpdate() {
-		this.disposeChart();
-		this.updatePlot();
+	componentDidUpdate(oldProps, newProps) {
+		console.log('ComponentDidUpdate')
+		console.log(oldProps)
+		console.log(newProps)
+		// If a year changed
+		if (oldProps.year != newProps.year) {
+			// Get rid of previous chart
+			d3.selectAll("#bubbleplot > *").remove();
+			this.updatePlot();
+		}
 	}
 
 	componentDidMount() {
@@ -198,7 +204,7 @@ class OutboundExpenseGraph extends Component {
 			<div id={style.outbound_expense_section}>
 				<div class="container">
 
-					<h2>Outbound/Expense graph</h2>
+					<h2>Outbound/Expense graph for year {this.props.year}</h2>
 					<div id="bubbleplot" style="position: relative;">
 
 					</div>

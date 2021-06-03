@@ -15,7 +15,7 @@ class Home extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			year: '',
+			year: 2005,
 			countryCode: '',
 			continent: 'Europe'
 		}
@@ -41,14 +41,14 @@ class Home extends Component {
 					<h2>Welcome</h2>
 				</div>
 
-				<WorldMap onCountryChange={(c) => {this.setCountry(c)}} />
+				<WorldMap onCountryChange={(c) => {this.setCountry(c)}} onYearChange={(y) => {this.setState({year: y})}} />
 
 				<CountryDetails 
 					countryCode={this.state.countryCode} 
 					continent={this.state.continent}
 				/>
 				
-				<OutboundExpenseGraph />
+				<OutboundExpenseGraph year={this.state.year}/>
 
 			</section>
 		)
