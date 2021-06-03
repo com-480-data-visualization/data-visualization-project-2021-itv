@@ -99,7 +99,7 @@ class CountryDetails extends Component {
 			var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
 
 			getAllCountryCodes((codes) => {
-				for(var i = 0; i < 40; i++) {
+				for(var i = 0; i < codes.length; i++) {
 					createSeries(codes[i]['code'], codes[i]['name'])
 				}
 				/* Create a cursor */
