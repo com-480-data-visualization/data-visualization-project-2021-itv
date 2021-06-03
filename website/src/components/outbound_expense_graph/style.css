@@ -1,3 +1,8 @@
-#outbound_expense_section {
-  /* background-color: cyan; */
+circle {
+  stroke: white;
+}
+
+circle:hover {
+  stroke: black;
+  stroke-width: 2px;
 }

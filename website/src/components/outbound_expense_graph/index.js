@@ -21,9 +21,9 @@ class OutboundExpenseGraph extends Component {
 
 	updatePlot() {
 		console.log('Building plot');
-		let margin = {top: 10, bottom: 80, left: 80, right: 50};
+		let margin = {top: 10, bottom: 40, left: 100, right: 50};
 		let full_width = 1000;
-		let full_height = 500;
+		let full_height = 550;
 		let width = full_width - margin.left - margin.right;
 		let height = full_height - margin.top - margin.bottom;
 
@@ -82,8 +82,9 @@ class OutboundExpenseGraph extends Component {
 			this.svg = d3.select('#bubbleplot')
 				.append('svg')
 					.attr('width', full_width)
-					.attr('height', full_height)
+					.attr('height', full_height+20)
 				.append("g")
+					.attr('height', full_height+20)
 					.attr("transform","translate("+margin.left+","+margin.top+")");
 
 			// Add axis
@@ -110,24 +111,22 @@ class OutboundExpenseGraph extends Component {
 				.domain(continents)
 				.range(d3.schemeSet2)
 
-			const Tooltip = d3.select('#bubbleplot').style('position', 'relative')
+			// Tooltip and interactivity
+			const Tooltip = d3.select('#bubbleplot')
 				.append('div')
 					.style('opacity', 0)
 					.attr('class', 'tooltip')
 					.style('position', 'absolute')
 					.style('background-color', 'white')
-					.style('border', 'solid')
+					.style('border', 'solid 2px')
 					.style('border-radius', '5px')
 					.style('border-color', 'black')
 					.style('padding', '5px');
 			
 			// Create interactive functions
-			const showToolTip = m => {
-				Tooltip.style('opacity', 1);
-			};
-
+			const showToolTip = m => { Tooltip.style('opacity', 1); };
 			const getToolTipData = m => {
-				let s = m.name +' ('+m.continent+")<br />";
+				let s = "<b>" + m.name +'</b> ('+m.continent+")<br /><br />";
 				s += "Departures: " + m.departures + "<br />";
 				s += "Expenditures: " + m.population + "<br />";
 				s += "Population: " + m.population + "<br />";
@@ -137,13 +136,10 @@ class OutboundExpenseGraph extends Component {
 				Tooltip
 					.html(getToolTipData(m))
 					.style('left', (margin.left + d3.mouse(d3.event.currentTarget)[0] + 15) + 'px')
-					.style('top', (margin.top + d3.mouse(d3.event.currentTarget)[1] + 15) + 'px');
+					.style('top', (margin.top + d3.mouse(d3.event.currentTarget)[1] + 15) + 'px')
+					.style('background-color', continentColor(m.continent));
 			};
-
-			const hideToolTip = m => {
-				Tooltip
-					.style('opacity', 0);
-			};
+			const hideToolTip = m => { Tooltip.style('opacity', 0); };
 
 			this.svg.append('g')
 				.selectAll('dot')
@@ -156,10 +152,38 @@ class OutboundExpenseGraph extends Component {
 					.attr('r', d => z(d.population))
 					.style("fill", d => continentColor(d.continent))
 					.style("opacity", "0.6")
-					.attr("stroke", "black")
 				.on('mouseover', showToolTip)
 				.on('mousemove', mousemove)
 				.on('mouseleave', hideToolTip);
+
+			this.svg.append('text')
+				.attr('x', width/2 - 100)
+				.attr('y', height + margin.bottom)
+				.attr('font-size', '1.3em')
+				.text('Number of departures')
+
+			this.svg.append('text')
+				.attr('x', -height/2 - 5*margin.top)
+				.attr('y', -margin.left/2 - 20)
+				.attr('font-size', '1.3em')
+				.attr('transform', "rotate(-90)")
+				.text('Expenses')
+
+			const legend = d3.select('#bubbleplot')
+				.append('div')
+					.attr('id', 'bubbleplot_legend')
+					.style('position', 'absolute')
+  				.style('padding', '10px')
+					.style('border', 'solid 1px')
+  				.style('border-radius', '5px')
+  				.style('opacity', '0.9')
+					.style('top', (margin.top) + 'px')
+					.style('left', (margin.left+20) + 'px')
+					.html(
+						continents.sort()
+						.map(c => "<span style=\"color:" + continentColor(c) + ";font-size:1.2em;\">" + c + "</span>")
+						.join('<br />')
+					)
 		});
 	}
 
@@ -178,7 +202,7 @@ class OutboundExpenseGraph extends Component {
 				<div class="container">
 
 					<h2>Outbound/Expense graph</h2>
-					<div id="bubbleplot">
+					<div id="bubbleplot" style="position: relative;">
 
 					</div>
 					{
