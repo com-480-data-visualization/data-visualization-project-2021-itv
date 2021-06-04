@@ -31,6 +31,11 @@ class CountryDetails extends Component {
 
 	drawLineChartForContinent() {
 
+		// dispose the old chart to draw the new one
+		if(chart) {
+			chart.dispose();
+		}
+
 		function toggleSeries(series, over) {
 			series.segments.each(function(segment) {
 				segment.isHover = over;
@@ -170,9 +175,9 @@ class CountryDetails extends Component {
 		if(oldProps.countryCode != this.props.countryCode) {
 			if(this.props.continent != oldProps.continent) {
 				// dispose the chart
-				if(chart) {
-					chart.dispose();
-				}
+				// if(chart) {
+				// 	chart.dispose();
+				// }
 				// draw the chart for the new continent
 				this.drawLineChartForContinent();
 			} else {
@@ -184,7 +189,10 @@ class CountryDetails extends Component {
 
   render() {
 		return (
-			<div id="lineplot" style={{"width": "100%", "height": "500px", "padding-right": "10px"}}></div>
+			<div>
+				<h2>Departure per capita: {this.props.continent}</h2>
+				<div id="lineplot" style={{"width": "100%", "height": "500px", "padding-right": "10px"}}></div>
+			</div>
 		)
 	}
 }
