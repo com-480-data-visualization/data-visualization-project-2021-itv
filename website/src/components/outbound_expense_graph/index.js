@@ -183,12 +183,9 @@ class OutboundExpenseGraph extends Component {
 		});
 	}
 
-	componentDidUpdate(oldProps, newProps) {
-		console.log('ComponentDidUpdate')
-		console.log(oldProps)
-		console.log(newProps)
+	componentDidUpdate(oldProps) {
 		// If a year changed
-		if (oldProps.year != newProps.year) {
+		if (oldProps.year != this.props.year) {
 			// Get rid of previous chart
 			d3.selectAll("#bubbleplot > *").remove();
 			this.updatePlot();

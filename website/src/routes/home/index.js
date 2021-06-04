@@ -20,6 +20,16 @@ class Home extends Component {
 		}
 	}
 
+	setYear(newYear) {
+		const code = this.state.countryCode;
+		const continent = this.state.continent;
+		this.setState({
+			year: newYear,
+			countryCode: code,
+			continent: continent
+		})
+	}
+
 	setCountry(newCountryCode) {
 		const oldYear = this.state.year;
 		if (this.state.countryCode !== newCountryCode) {
@@ -40,7 +50,7 @@ class Home extends Component {
 					<h2>Welcome</h2>
 				</div>
 
-				<WorldMap onCountryChange={(c) => {this.setCountry(c)}} onYearChange={(y) => {this.setState({year: y})}} />
+				<WorldMap onCountryChange={(c) => {this.setCountry(c)}} onYearChange={(y) => {this.setYear(y)}} />
 
 				<CountryDetails 
 					countryCode={this.state.countryCode} 
