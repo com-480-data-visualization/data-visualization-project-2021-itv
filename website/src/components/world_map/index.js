@@ -142,12 +142,12 @@ class Map extends Component {
 
 	disposeChart() {
     if (this.map) {
+			console.log('disposing map')
       this.map.dispose();
     }
 	}
 
 	componentDidUpdate(oldProps) {
-		// this.disposeChart();
 		// TODO: not sure this is optimal
 		this.yearSelected();
 	}

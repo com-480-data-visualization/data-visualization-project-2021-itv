@@ -32,9 +32,7 @@ class CountryDetails extends Component {
 	drawLineChartForContinent() {
 
 		// dispose the old chart to draw the new one
-		if(chart) {
-			chart.dispose();
-		}
+		this.disposeChart();
 
 		function toggleSeries(series, over) {
 			series.segments.each(function(segment) {
@@ -132,9 +130,7 @@ class CountryDetails extends Component {
 	}
 
 	componentWillUnmount() {
-    if (this.chart) {
-      this.chart.dispose();
-    }
+		this.disposeChart();
   }
 
 	componentDidUpdate(oldProps) {
@@ -174,16 +170,19 @@ class CountryDetails extends Component {
 
 		if(oldProps.countryCode != this.props.countryCode) {
 			if(this.props.continent != oldProps.continent) {
-				// dispose the chart
-				// if(chart) {
-				// 	chart.dispose();
-				// }
 				// draw the chart for the new continent
 				this.drawLineChartForContinent();
 			} else {
 				// highlight the new line and hide the old selected one
 				highlightSelectedCountry(oldProps, this.props);
 			}
+		}
+	}
+
+	disposeChart() {
+		if(this.chart) {
+			console.log('disposing line chart');
+			this.chart.dispose();
 		}
 	}
 
