@@ -3,7 +3,6 @@ import { Router } from 'preact-router';
 
 //import style from '../style/index.css';
 import Header from './header';
-import Footer from './footer';
 import baseroute from '../baseroute';
 
 // Code-splitting is automated for `routes` directory
@@ -19,7 +18,6 @@ const App = () => (
 				<About path={`${baseroute}/about`} />
 			</Router>
 		</div>
-		<Footer />
 	</Fragment>
 )
 
