@@ -19,7 +19,7 @@ class OutboundExpenseGraph extends Component {
 
 	updatePlot() {
 		let margin = {top: 10, bottom: 40, left: 100, right: 50};
-		let full_width = 1000;
+		let full_width = 1200;
 		let full_height = 550;
 		let width = full_width - margin.left - margin.right;
 		let height = full_height - margin.top - margin.bottom;
@@ -198,14 +198,9 @@ class OutboundExpenseGraph extends Component {
 
   render() {
     return (
-			<div id={style.outbound_expense_section}>
-				<div class="container">
-
-					<h2>Outbound/Expense graph for year {this.props.year}</h2>
-					<div id="bubbleplot" style="position: relative;">
-
-					</div>
-				</div>
+			<div id={style.outbound_expense_section} class="container">
+				<h2>Outbound/Expense graph for year {this.props.year}</h2>
+				<div id="bubbleplot" style="position: relative;"></div>
 			</div>
 		)
 	}

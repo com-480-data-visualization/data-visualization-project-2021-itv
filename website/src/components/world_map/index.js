@@ -17,7 +17,6 @@ import { rgbToHsl } from '@amcharts/amcharts4/.internal/core/utils/Colors';
 
 const marks = getYears()
 
-
 function getYears() {
 	let years = []
 	for(var y = 1995; y < 2019; y++) {
@@ -171,7 +170,7 @@ class WorldMap extends Component {
 
 	render() {
 		return (
-			<div>
+			<div class="container">
 				<Map 
 					year={this.props.year}
 					changeCountry={this.props.onCountryChange}

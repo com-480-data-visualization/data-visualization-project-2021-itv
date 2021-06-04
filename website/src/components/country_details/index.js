@@ -188,7 +188,7 @@ class CountryDetails extends Component {
 
   render() {
 		return (
-			<div>
+			<div class="container" >
 				<h2>Departure per capita: {this.props.continent}</h2>
 				<div id="lineplot" style={{"width": "100%", "height": "500px", "padding-right": "10px"}}></div>
 			</div>
