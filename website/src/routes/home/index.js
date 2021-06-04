@@ -48,6 +48,18 @@ class Home extends Component {
 			<section class={style.home}>
 				<div class="container">
 					<h2>Welcome</h2>
+					<div>Here are three International World Tourism plots:</div>
+					<ul>
+						<li>
+							<a href="#worldmap">World Map</a>
+						</li>
+						<li>
+							<a href="#linechart">Departures per capita year by year</a>
+						</li>
+						<li>
+							<a href="#bubblechart">Outbound/Expanse bubble chart</a>
+						</li>
+					</ul>
 				</div>
 
 				<WorldMap 

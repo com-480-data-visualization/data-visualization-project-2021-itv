@@ -181,7 +181,6 @@ class CountryDetails extends Component {
 
 	disposeChart() {
 		if(this.chart) {
-			console.log('disposing line chart');
 			this.chart.dispose();
 		}
 	}
@@ -189,7 +188,7 @@ class CountryDetails extends Component {
   render() {
 		return (
 			<div class="container" >
-				<h2>Departure per capita: {this.props.continent}</h2>
+				<h2 id="linechart">Departure per capita: {this.props.continent}</h2>
 				<div id="lineplot" style={{"width": "100%", "height": "500px", "padding-right": "10px"}}></div>
 			</div>
 		)

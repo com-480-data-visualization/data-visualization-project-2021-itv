@@ -140,7 +140,6 @@ class Map extends Component {
 
 	disposeChart() {
     if (this.map) {
-			console.log('disposing map')
       this.map.dispose();
     }
 	}
@@ -170,6 +169,7 @@ class WorldMap extends Component {
 	render() {
 		return (
 			<div class="container">
+				<h2 id="worldmap">Departures per capita by country</h2>
 				<Map 
 					year={this.props.year}
 					changeCountry={this.props.onCountryChange}
