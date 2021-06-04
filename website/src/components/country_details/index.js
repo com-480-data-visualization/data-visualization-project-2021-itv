@@ -7,8 +7,6 @@ import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 import style from './style.css';
 import baseroute from '../../baseroute';
 
-import outBoundRatioPerYearsImage from '../../assets/images/tourism-by-year.png';
-
 import {getAllCountryCodes, getAllDepPerCapita, getCountryContinent, getDepPerCapitaByCountry, getDepPerCapitaByYear, getDepPerCapitaByContinent} from '../../data/utils';
 
 // TODO: replace these by objects

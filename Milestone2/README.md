@@ -20,15 +20,15 @@ We build our website automatically using Github Actions. For some unknown reason
 #### Home page  
 The `Home` page of our website will display an interactive zoomable choropleth map of the world (see the sketch below). The data displayed will be either about outbound tourism ([definition](https://tourismteacher.com/outbound-tourism/)) divided by population of a given country or overall expenses for travel for each country divided by the number of departures (outbound). This theme will be selectable on the left corner (using a select field). The map will show countries with different colors depending on the value for the country for the selected theme. A slider at the bottom of the map will allow to select the year the user is interested in. When overing a country, a tooltip will display the country name as well as the real value used to define the color.
 
-![Scheme of the choropleth map](../website/src/assets/images/map.png)
+![Scheme of the choropleth map](./images/map.png)
 
 We would like to make the countries clickable so that when a user selects and clicks on a country, it is redirected to the bottom of the page where specific information about the country will be displayed. A year by year ratio *(number of departures)/(country population)* will be displayed for the selected country.  
 
-![Scheme of the time-based graph](../website/src/assets/images/tourism-by-year.png)
+![Scheme of the time-based graph](./images/tourism-by-year.png)
 
 Finally, it could be interesting to compare the countries we have data on with the expenses per number of out-going tourists (outbound). To visualize this relation, we have selected the bubble plot (see figure below), since this type of plot displays a big number of features (four). For instance, every bubble will correspond to a country, the size of the bubble will indicate the population of the country and the color of the bubble will correspond to the continent this country belongs to. It can provide insight about the level of wealth of the countries. We also expect some countries to form clusters. For example, European countries are expected to form a cluster in the up right corner of the plot, because these countries are relatively rich and Europeans can easily travel within Europe. Bubble plot will be displayed once the year is selected by the user.  
 
-![Scheme of the expenses over outbound graph](../website/src/assets/images/bubble-plot.png)
+![Scheme of the expenses over outbound graph](./images/bubbleplot.png)
 
 #### About page
 
