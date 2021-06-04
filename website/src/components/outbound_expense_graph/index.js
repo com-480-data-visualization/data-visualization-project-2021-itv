@@ -104,8 +104,8 @@ class OutboundExpenseGraph extends Component {
 
 			// To display a color per continent
 			let continentColor = d3.scaleOrdinal()
-				.domain(continents)
-				.range(d3.schemeSet2)
+				.domain(continents.sort())
+				.range(['rgb(102, 194, 165)', 'rgb(252, 141, 98)', 'rgb(141, 160, 203)', 'rgb(231, 138, 195)', 'rgb(166, 216, 84)'])
 
 			// Tooltip and interactivity
 			const Tooltip = d3.select('#bubbleplot')
