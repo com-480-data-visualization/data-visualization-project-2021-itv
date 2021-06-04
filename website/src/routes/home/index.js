@@ -57,7 +57,7 @@ class Home extends Component {
 							<a href="#linechart">Departures per capita year by year</a>
 						</li>
 						<li>
-							<a href="#bubblechart">Outbound/Expanse bubble chart</a>
+							<a href="#bubbles">Outbound/Expanse bubble chart</a>
 						</li>
 					</ul>
 				</div>

@@ -198,8 +198,10 @@ class OutboundExpenseGraph extends Component {
 
   render() {
     return (
-			<div id={style.outbound_expense_section} class="container">
-				<h2>Outbound/Expense graph for year {this.props.year}</h2>
+			<div class="container">
+				<h2 id="bubbles">Outbound/Expense graph for year {this.props.year}</h2>
+				<p>This bubble plot displays how much money tourists spend for travels the given year.</p>
+				<p>To display a different year, select it on a <a href="#worldmap">world map above</a></p>
 				<div id="bubbleplot" style="position: relative;"></div>
 			</div>
 		)

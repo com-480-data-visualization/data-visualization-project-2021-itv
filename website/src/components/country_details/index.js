@@ -189,6 +189,8 @@ class CountryDetails extends Component {
 		return (
 			<div class="container" >
 				<h2 id="linechart">Departure per capita: {this.props.continent}</h2>
+				<p>Here, year by year departure per capita ratio is displayed for the given country and the countries of the same continent</p>
+				<p>To select another country, click on it on the <a href="#worldmap">world map above</a></p>
 				<div id="lineplot" style={{"width": "100%", "height": "500px", "padding-right": "10px"}}></div>
 			</div>
 		)

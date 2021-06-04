@@ -170,6 +170,12 @@ class WorldMap extends Component {
 		return (
 			<div class="container">
 				<h2 id="worldmap">Departures per capita by country</h2>
+				<p>
+				This chart displays the <strong>departures per capita</strong> for all the countries of the world.
+				</p>
+				<p>
+				Departure per capita is the ratio of the number of <strong>departures</strong> to the <strong>population</strong> of a given country.
+				</p>
 				<Map 
 					year={this.props.year}
 					changeCountry={this.props.onCountryChange}
