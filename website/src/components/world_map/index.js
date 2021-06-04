@@ -50,13 +50,19 @@ class DiscreteSlider extends Component {
 class Map extends Component {
 
 	yearSelected() {
+
+		// dispose the old chart to draw the new one
+		this.disposeChart()
+
 		// Create map instance
 		let map = am4core.create("chartdiv", am4maps.MapChart);
 		this.map = map;
 
-		let f = this.props.changeCountry;
+		let selectNewCountry = this.props.changeCountry;
 
-		getDepPerCapitaByYear((this.props.year).toString(), (data) => {
+		const year = this.props.year ? this.props.year.toString() : '2005';
+
+		getDepPerCapitaByYear(year, (data) => {
 			const name = data['name']
 			const population = data['population']
 			const departures = data['departures']
@@ -128,20 +134,20 @@ class Map extends Component {
 
 			polygonTemplate.events.on("hit", function(ev) {
 				var data = ev.target.dataItem.dataContext;
-				f(data.id);
+				selectNewCountry(data.id);
 			})
 
 		})
 	}
 
 	disposeChart() {
-    //if (this.map) {
+    if (this.map) {
       this.map.dispose();
-    //}
+    }
 	}
 
 	componentDidUpdate(oldProps) {
-		this.disposeChart();
+		// this.disposeChart();
 		// TODO: not sure this is optimal
 		this.yearSelected();
 	}
@@ -156,33 +162,23 @@ class Map extends Component {
 
   render() {
     return (
-      	<div id="chartdiv" class={style.map} onCountryChange={this.props.onCountryChange}></div>
+      	<div id="chartdiv" class={style.map}></div>
     );  
 	}
 };
 
 class WorldMap extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			year: 2005
-		}
-	}
-
-	setYear(year) {
-		this.setState({year: year});
-	}
 
 	render() {
 		return (
 			<div>
 				<Map 
-					year={this.state.year}
+					year={this.props.year}
 					changeCountry={this.props.onCountryChange}
 				/>
 				<DiscreteSlider
-					value={this.state.year}
-					onChange={(year) => {this.setYear(year); this.props.onYearChange(year)}}
+					value={this.props.year}
+					onChange={this.props.onYearChange}
 				/>
 			</div>
 		)

@@ -50,7 +50,10 @@ class Home extends Component {
 					<h2>Welcome</h2>
 				</div>
 
-				<WorldMap onCountryChange={(c) => {this.setCountry(c)}} onYearChange={(y) => {this.setYear(y)}} />
+				<WorldMap 
+					year={this.state.year} 
+					onCountryChange={(c) => {this.setCountry(c)}} onYearChange={(y) => {this.setYear(y)}} 
+				/>
 
 				<CountryDetails 
 					countryCode={this.state.countryCode} 
