@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[4],{VDfu:function(t){t.exports={about:"about__3Ycn6"}},ZbNB:function(t,e,a){"use strict";a.r(e);var n=a("hosL"),o=a("VDfu"),s=a.n(o);e.default=function(){return Object(n.h)("section",{class:"about "+s.a.about},Object(n.h)("h1",null,"About"),Object(n.h)("p",null,"Here we will describe the project, the context (Data Visualization class @ EPFL) as well as the dataset we used and its origin."))}}}]);
-//# sourceMappingURL=route-about.chunk.52a6b.js.map
