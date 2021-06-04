@@ -9,7 +9,7 @@ const About = () => (
 		<h2>How are you?</h2>
 		<p>
 			We are two master students @ <Link href="https://www.epfl.ch" class={style.link}>EPFL</Link> and this project is made as part of the Data Visualisation (COM-480) course.
-			Our goal was to practice visualizations using Javascript libraries such as D3.js or amsCharts.<br />
+			Our goal was to practice visualizations using Javascript libraries such as D3.js or amCharts.<br />
 			You can discover the other projects of our class on the <Link href="https://github.com/com-480-data-visualization" title="Github classroom for COM-480">Github classroom</Link>.
 		</p>
 
