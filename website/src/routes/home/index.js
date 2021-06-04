@@ -8,7 +8,6 @@ import OutboundExpenseGraph from '../../components/outbound_expense_graph';
 import {getCountryContinent} from '../../data/utils';
 
 import style from './style.css';
-import baseroute from '../../baseroute';
 
 class Home extends Component {
 	

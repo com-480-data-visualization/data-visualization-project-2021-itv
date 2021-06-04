@@ -1,11 +1,12 @@
 import * as d3 from "d3";
 
+import baseroute from '../baseroute';
 // import depPerCapita from '../assets/data/dep_per_capita.csv';
 // import dummy from '../assets/data/dummy.csv';
 
 // TODO: for some reason it does not work with import
-const depPerCapitaUrl = '../assets/data/dep_per_capita.csv';
-const fullDataset = '../assets/data/full_dataset.csv';
+const depPerCapitaUrl = baseroute + '/assets/data/dep_per_capita.csv';
+const fullDataset = baseroute + '/assets/data/full_dataset.csv';
 
 export function getDepPerCapitaByYear(year, f) {
   d3.csv(depPerCapitaUrl).then(function(data) {
