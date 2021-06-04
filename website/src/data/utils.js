@@ -1,10 +1,8 @@
 import * as d3 from "d3";
 
 import baseroute from '../baseroute';
-// import depPerCapita from '../assets/data/dep_per_capita.csv';
-// import dummy from '../assets/data/dummy.csv';
 
-// TODO: for some reason it does not work with import
+// Baseroute is required for the links to be correct when hosted on Github Pages
 const depPerCapitaUrl = baseroute + '/assets/data/dep_per_capita.csv';
 const fullDataset = baseroute + '/assets/data/full_dataset.csv';
 
@@ -18,8 +16,8 @@ export function getDepPerCapitaByYear(year, f) {
         'id': data[i]['CountryCode2'],
         'name': data[i]['CountryName'],
         'value': data[i][year],
-        'population': data[i][popColName],
-        'departures': data[i][depColName]
+        'population': data[i][popColName].length != 0 ? parseInt(data[i][popColName]) : 0,
+        'departures': data[i][depColName].length != 0 ? parseInt(data[i][depColName]) : 0,
       })
     }
     f(depPerCapita)

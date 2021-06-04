@@ -106,7 +106,6 @@ class Map extends Component {
 				"logarithmic": false,
 				"minValue": 0,
 				"maxValue": 2
-
 			});
 
 			// Add heat legend
